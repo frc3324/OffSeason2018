@@ -5,38 +5,23 @@ import frc.team3324.robot.Constants;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class IntakeArm extends Subsystem implements PIDOutput {
+public class CubeController extends Subsystem {
 
+	WPI_VictorSPX leftIntakeMotor = new WPI_VictorSPX(Constants.leftIntakeMotorPort);
+	WPI_VictorSPX rightIntakeMotor = new WPI_VictorSPX(Constants.rightIntakeMotorPort);
 
-	static Encoder armEncoder = new Encoder(Constants.ArmEncoderACLK, Constants.ArmEncoderDT, Constants.ArmEncoderSW);
-
-	private WPI_VictorSPX armMotorLeft = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
-	private WPI_VictorSPX armMotorRight = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
-	private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
-
-	public IntakeArm() {
-		// CAUTION: direction already set, don't change it
-		if (armMotorLeft.getInverted()) {
-            armMotorLeft.setInverted(true);
-        }
-	}
-	/**
-	 * Move the arm at the specified speed.
-	 * @param speed
-	 */
-	public void armMovement(double speed) {
-		armMotors.set(speed);
+	public CubeController() {
 	}
 
-    public void initDefaultCommand() {
-        //Do nothing
+	public void intake(double speed) {
+		leftIntakeMotor.set(-speed);
+		rightIntakeMotor.set(speed);
+	}
+
+	public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
+        //setDefaultCommand(new MySpecialCommand());
     }
 }
