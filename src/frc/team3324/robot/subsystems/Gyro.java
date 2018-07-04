@@ -1,42 +1,37 @@
 package frc.team3324.robot.subsystems;
 
-import frc.team3324.robot.Constants;
-
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+import com.kauailabs.navx.frc.AHRS;
 
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.Encoder;
-import edu.wpi.first.wpilibj.PIDController;
-import edu.wpi.first.wpilibj.PIDOutput;
-import edu.wpi.first.wpilibj.SpeedControllerGroup;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class IntakeArm extends Subsystem implements PIDOutput {
+/**
+ *
+ */
+public class Gyro extends Subsystem {
+	private AHRS mAhrs;
 
-
-	static Encoder armEncoder = new Encoder(Constants.ArmEncoderACLK, Constants.ArmEncoderDT, Constants.ArmEncoderSW);
-
-	private WPI_VictorSPX armMotorLeft = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
-	private WPI_VictorSPX armMotorRight = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
-	private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
-
-	public IntakeArm() {
-		// CAUTION: direction already set, don't change it
-		if (armMotorLeft.getInverted()) {
-            armMotorLeft.setInverted(true);
-        }
-	}
-	/**
-	 * Move the arm at the specified speed.
-	 * @param speed
-	 */
-	public void armMovement(double speed) {
-		armMotors.set(speed);
+	public Gyro() {
+		try {
+			mAhrs = new AHRS(SPI.Port.kMXP);
+		} catch (RuntimeException ex ) {
+			DriverStation.reportError("Error Connecting:  " + ex.getMessage(), true);
+		}
 	}
 
-    public void initDefaultCommand() {
-        //Do nothing
+	public double getPidAngle() {
+		return mAhrs.pidGet();
+	}
+
+	public void clear() {
+		mAhrs.reset();
+	}
+	public double getYaw() {
+		return mAhrs.getYaw();
+	}
+
+     public void initDefaultCommand() {
+        // Set the default command for a subsystem here.
     }
 }

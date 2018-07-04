@@ -44,11 +44,6 @@ public class ControlArm extends Command {
      */
     protected void execute() {
 
-
-    	double currentPulse = Robot.mIntakeArm.getRawArm();
-
-		SmartDashboard.putNumber("CURRENTPULSE", currentPulse);
-
     	double leftY = OI.get1LeftYAxis();
 
     	DriverStation.reportError("X AXIS" + leftY, false);
