@@ -1,9 +1,5 @@
 package frc.team3324.robot;
-import frc.team3324.robot.commands.teleop.ClimberSlideDown;
-import frc.team3324.robot.commands.teleop.ClimberSlideUp;
 import frc.team3324.robot.commands.teleop.LaunchCube;
-import frc.team3324.robot.commands.teleop.PressureSwitch;
-import frc.team3324.robot.commands.teleop.Winches;
 import frc.team3324.robot.util.MetroController;
 
 import edu.wpi.first.wpilibj.XboxController;

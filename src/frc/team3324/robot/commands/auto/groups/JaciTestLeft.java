@@ -1,12 +1,10 @@
-package org.metrobots.commands.auto.groups;
+package frc.team3324.robot.commands.auto.groups;
 
-import org.metrobots.commands.auto.DriveForward;
-import org.metrobots.commands.auto.JaciPathfinding;
-import org.metrobots.commands.auto.JaciPathfindingReverse;
-import org.metrobots.commands.auto.Pause;
-import org.metrobots.commands.auto.Rotate;
-import org.metrobots.util.JaciFinder;
-import org.metrobots.util.TrajContainer;
+import frc.team3324.robot.commands.auto.DriveForward;
+import frc.team3324.robot.commands.auto.JaciPathfinding;
+import frc.team3324.robot.commands.auto.JaciPathfindingReverse;
+import frc.team3324.robot.commands.auto.Pause;
+import frc.team3324.robot.commands.auto.Rotate;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;

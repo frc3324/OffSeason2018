@@ -1,28 +1,14 @@
-package frc.team3324.robot;
+1package frc.team3324.robot;
 
 import java.io.IOException;
 
 import frc.team3324.robot.commands.DriveGroup;
 import frc.team3324.robot.commands.auto.DriveForward;
 import frc.team3324.robot.commands.auto.Rotate;
-import frc.team3324.robot.commands.auto.RotatePID;
-import frc.team3324.robot.commands.auto.groups.JaciTestLeft;
-import frc.team3324.robot.commands.auto.groups.LLeft;
-import frc.team3324.robot.commands.auto.groups.LMiddle;
-import frc.team3324.robot.commands.auto.groups.LRight;
-import frc.team3324.robot.commands.auto.groups.RLeft;
-import frc.team3324.robot.commands.auto.groups.RMiddle;
-import frc.team3324.robot.commands.auto.groups.RMiddleArc;
-import frc.team3324.robot.commands.auto.groups.RRight;
-import frc.team3324.robot.commands.auto.groups.LMiddleArc;
-import frc.team3324.robot.commands.teleop.PressureSwitch;
-import frc.team3324.robot.subsystems.Climber;
 import frc.team3324.robot.subsystems.CubeController;
 import frc.team3324.robot.subsystems.DriveTrain;
 import frc.team3324.robot.subsystems.Gyro;
 import frc.team3324.robot.subsystems.IntakeArm;
-import frc.team3324.robot.subsystems.PIDStabilization;
-import frc.team3324.robot.subsystems.Pneumatics;
 import frc.team3324.robot.util.StatusLED;
 
 import edu.wpi.cscore.UsbCamera;
@@ -66,10 +52,7 @@ public class Robot extends IterativeRobot {
 	public static final DriveTrain mDriveTrain = new DriveTrain();
 	public static final Gyro mGyro = new Gyro();
 	public static final CubeController mCubeController = new CubeController();
-	public static final PIDStabilization mPIDStabilzation = new PIDStabilization();
 	public static final IntakeArm mIntakeArm = new IntakeArm();
-	public static final Climber mClimber = new Climber();
-	public static final Pneumatics mPneumatics = new Pneumatics();
 	private PowerDistributionPanel pdp;
 
 	Command selectedCommand; // Selected command
@@ -207,14 +190,17 @@ public class Robot extends IterativeRobot {
 		Scheduler.getInstance().run();
 		mDriveTrain.printEncoder();
 		Robot.mDriveTrain.getCurrent(12);
-
-		for(int i = 0; i < /* however many things to test */; i++)
+		
+		//CURRENT AND POWER MONITOR//
+		for(int i = 0; i < 10; i++)
 		{
 			SmartDashboard.putNumber("Channel " + i + " Current", pdp.getCurrent(i));
 		}
 
 		SmartDashboard.putNumber("Total Current", pdp.getTotalCurrent());
 		SmartDashboard.putNumber("Total Power", pdp.getTotalPower());
+		//CURRENT AND POWER MONITOR//
+	
 	}
 
 	/**

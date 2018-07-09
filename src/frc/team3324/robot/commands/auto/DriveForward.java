@@ -1,7 +1,7 @@
-package frc.team3324.commands.auto;
+package frc.team3324.robot.commands.auto;
 
-import frc.team3324.Robot;
-import frc.team3324.subsystems.DriveTrain;
+import frc.team3324.robot.Robot;
+import frc.team3324.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -49,21 +49,14 @@ public class DriveForward extends Command {
 
 	@Override
 	protected void initialize() {
-//		currentDistance = (DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2;
-//		Robot.mDriveTrain.setSafetyEnabled(false);
 		DriveTrain.clearEncoder();
 	}
 
 	@Override
 	protected void execute() {
 
-//		distanceToTravel = goalDistance - currentDistance;
-//		speed = distanceToTravel / goalDistance;
-//		Smd artDashboard.putNumber("SPEED: ", speed);
-//		//make speed negative to go forward in real lifes
-//		Robot.mDriveTrain.arcadeDrive(-speed, 0.0, true);
 		currentDistance = (Math.abs(DriveTrain.getLeftDistance()) + Math.abs(DriveTrain.getRightDistance())) / 2.0;
-//		currentDistance = (Math.abs(Robot.mDriveTrain.getLeftDistance());
+
 		SmartDashboard.putNumber("AVERAGE DRIVETRAIN PULSE1: ", currentDistance);
 		SmartDashboard.putNumber("Right from robot encoder: ", DriveTrain.getRightDistance());
 		SmartDashboard.putNumber("Left from robot encoder: ", DriveTrain.getRightDistance());
@@ -81,7 +74,7 @@ public class DriveForward extends Command {
 		RSpeed = finalSpeed;
 		SmartDashboard.putNumber("LSpeed", LSpeed);
 		SmartDashboard.putNumber("RSpeed", RSpeed);
-//		Robot.mPIDStabilzation.GyroStabilize(-speed);
+
 		if (Math.abs(distanceToTravel) < 1) { //0.5
 			driveFinished = true;
 		}
@@ -90,33 +83,11 @@ public class DriveForward extends Command {
 		Robot.mDriveTrain.tankDrive(LSpeed, RSpeed, false);
 		SmartDashboard.putNumber("Gyro!!!!", Robot.mGyro.getPidAngle());
 
-//		Robot.mDriveTrain.arcadeDrive(-0.4, 0.0, true);
-
 	}
 
 	@Override
 	protected boolean isFinished() {
 		return driveFinished;
-//		currentDistance = (int) ((DriveTrain.getLeftDistance() + DriveTrain.getRightDistance()) / 2.0);
-//		if (distanceToTravel != goalDistance) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-
-//		currentDistance = (int) ((DriveTrain.getLeftDistance() - DriveTrain.getRightDistance()) / 2.0);
-//		currentPulse = (DriveTrain.getLeftDistance() - DriveTrain.getRightDistance()) / 2.0;
-//		if (Math.abs(speed) > 0.3) {
-//			return false;
-//		} else {
-//			return true;
-//		}
-//
-//		speed = 0.75;
-//		goalDistance = 60;
-//		pulsesToTravel = distance * (Constants.CIRCUMFERENCE / Constants.PULSES);
-//		speed = pulsesToTravel / totalPulses;
-//
 	}
 
 

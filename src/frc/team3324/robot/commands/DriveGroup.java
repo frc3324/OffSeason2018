@@ -2,14 +2,9 @@ package frc.team3324.robot.commands;
 
 import frc.team3324.robot.OI;
 import frc.team3324.robot.Robot;
-import frc.team3324.robot.commands.teleop.ClimberSlideDown;
-import frc.team3324.robot.commands.teleop.ClimberSlideUp;
 import frc.team3324.robot.commands.teleop.ControlArm;
 import frc.team3324.robot.commands.teleop.DriveTank;
 import frc.team3324.robot.commands.teleop.LaunchCube;
-import frc.team3324.robot.commands.teleop.PressureSwitch;
-import frc.team3324.robot.commands.teleop.Winches;
-
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
