@@ -5,7 +5,8 @@ import frc.team3324.robot.Robot;
 import frc.team3324.robot.commands.teleop.ControlArm;
 import frc.team3324.robot.commands.teleop.DriveTank;
 import frc.team3324.robot.commands.teleop.LaunchCube;
-
+import frc.team3324.robot.commands.teleop.Shift;
+import main.java.frc.team3324.robot.commands.teleop.ArmPID;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -26,6 +27,8 @@ public class DriveGroup extends CommandGroup {
 		this.addParallel(new DriveTank()); //gamepad0, joysticks
 		this.addParallel(new ControlArm()); //gamepad1, left joystick
 		this.addParallel(new LaunchCube());
+		this.addParallel(new Shift());
+		this.addParallel(new ArmPID());
 	}
 
 }

@@ -7,6 +7,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.kauailabs.navx.frc.AHRS;
 
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Joystick;
@@ -41,7 +42,9 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	static final double kI = 0.00;
 	static final double kD = 0.00;
 	static final double kF = 0.00;
-
+	
+	private DoubleSolenoid gearShifter = new DoubleSolenoid(0, 1);
+	
 	private static Encoder lEncoder = new Encoder(Constants.leftEncoderPortA, Constants.leftEncoderPortB, false, Encoder.EncodingType.k4X);
 	private static Encoder rEncoder = new Encoder(Constants.rightEncoderPortA, Constants.rightEncoderPortB, false, Encoder.EncodingType.k4X);
 	private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.actualPulses;
@@ -205,6 +208,14 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 	    return (int) rawLDistance;
 	}
 
+	public void setHighGear() {
+		gearShifter.set(DoubleSolenoid.Value.kForward);
+	}
+	
+	public void setLowGear() {
+		gearShifter.set(DoubleSolenoid.Value.kReverse);
+	}
+	
     public double getkP(){
 
     	return kP;

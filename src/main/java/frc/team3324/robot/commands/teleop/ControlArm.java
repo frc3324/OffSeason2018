@@ -49,10 +49,7 @@ public class ControlArm extends Command {
     	DriverStation.reportError("X AXIS" + leftY, false);
 
     	Robot.mIntakeArm.armMovement(leftY);
-
-    	double joystickCurrentPulse = Robot.mIntakeArm.getRawArm();
-
-    	SmartDashboard.putNumber("CURRENTPULSE: ", joystickCurrentPulse);
+    }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

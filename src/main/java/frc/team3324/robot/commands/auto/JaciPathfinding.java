@@ -1,8 +1,8 @@
-package org.metrobots.commands.auto;
+package frc.team3324.robot.commands.auto;
 
-import org.metrobots.Constants;
-import org.metrobots.Robot;
-import org.metrobots.subsystems.DriveTrain;
+import frc.team3324.robot.Constants;
+import frc.team3324.robot.Robot;
+import frc.team3324.robot.subsystems.DriveTrain;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Notifier;

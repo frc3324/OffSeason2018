@@ -1,7 +1,7 @@
-package frc.team3324.commands.auto;
+package frc.team3324.robot.commands.auto;
 
-import frc.team3324.Constants;
-import frc.team3324.Robot;
+import frc.team3324.robot.Constants;
+import frc.team3324.robot.Robot;
 
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.command.Command;

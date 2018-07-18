@@ -1,4 +1,4 @@
-1package frc.team3324.robot;
+package frc.team3324.robot;
 
 import java.io.IOException;
 
@@ -10,6 +10,7 @@ import frc.team3324.robot.subsystems.DriveTrain;
 import frc.team3324.robot.subsystems.Gyro;
 import frc.team3324.robot.subsystems.IntakeArm;
 import frc.team3324.robot.util.StatusLED;
+import frc.team3324.robot.subsystems.TestArm;
 
 import edu.wpi.cscore.UsbCamera;
 import edu.wpi.cscore.VideoSource;
@@ -53,7 +54,10 @@ public class Robot extends IterativeRobot {
 	public static final Gyro mGyro = new Gyro();
 	public static final CubeController mCubeController = new CubeController();
 	public static final IntakeArm mIntakeArm = new IntakeArm();
-	private PowerDistributionPanel pdp;
+	
+	public static final TestArm mTestArm = new TestArm();
+	
+//	public static PowerDistributionPanel pdp = new PowerDistributionPanel();
 
 	Command selectedCommand; // Selected command
 	SendableChooser<Integer> autoSelector = new SendableChooser<Integer>(); // Put a selection menu on the SmartDashboard
@@ -80,7 +84,7 @@ public class Robot extends IterativeRobot {
     	autoSelector.addObject("Middle position", middle);
     	autoSelector.addObject("Right position", right);
         SmartDashboard.putData("CHOOSE ONE", autoSelector);
-        pdp = new PowerDistributionPanel();
+//        pdp = new PowerDistributionPanel();
 	}
 
 	/**
@@ -124,32 +128,32 @@ public class Robot extends IterativeRobot {
 				infoString = "Drive forward (default)";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Left position")) {
-				selectedCommand = new LLeft();
+//				selectedCommand = new LLeft();
 				infoString = "LLeft";
 			}
 			if (firstLetter == 'L' && positionString.equals("Middle position")) {
-				selectedCommand = new LMiddleArc();
+//				selectedCommand = new LMiddleArc();
 				infoString = "LMiddle";
 			}
 			else if (firstLetter == 'L' && positionString.equals("Right position")) {
-				selectedCommand = new LRight();
+//				selectedCommand = new LRight();
 				infoString = "LRight";
 			}
 			if (firstLetter == 'L'  && positionString.equals("Right position")){
-				selectedCommand = new RLeft();
+//				selectedCommand = new RLeft();
 				infoString = "RLeft";
 			}
 			else if (firstLetter == 'R' && positionString.equals("Middle position")) {
-				selectedCommand = new RMiddleArc();
+//				selectedCommand = new RMiddleArc();
 				infoString = "RMiddle";
 			}
 			else if (firstLetter == 'R') {
-				selectedCommand = new RRight();
+//				selectedCommand = new RRight();
 				infoString = "RRight";
 			}
 			else {
 				DriverStation.reportError("No game data received.", false);
-				selectedCommand = new JaciTestLeft();
+//				selectedCommand = new JaciTestLeft();
 				infoString = "No game data received.";
 			}
 		}
@@ -189,16 +193,16 @@ public class Robot extends IterativeRobot {
 		CameraServer.getInstance().getVideo();
 		Scheduler.getInstance().run();
 		mDriveTrain.printEncoder();
-		Robot.mDriveTrain.getCurrent(12);
+//		Robot.mDriveTrain.getCurrent(12);
 		
 		//CURRENT AND POWER MONITOR//
-		for(int i = 0; i < 10; i++)
-		{
-			SmartDashboard.putNumber("Channel " + i + " Current", pdp.getCurrent(i));
-		}
-
-		SmartDashboard.putNumber("Total Current", pdp.getTotalCurrent());
-		SmartDashboard.putNumber("Total Power", pdp.getTotalPower());
+//		for(int i = 0; i < 10; i++)
+//		{
+//			SmartDashboard.putNumber("Channel " + i + " Current", pdp.getCurrent(i));
+//		}
+//			SmartDashboard.putNumber("Channel" + 2 + " Current", pdp.getCurrent(2));
+		/*SmartDashboard.putNumber("Total Current", pdp.getTotalCurrent());
+		SmartDashboard.putNumber("Total Power", pdp.getTotalPower());            Useless apparently?*/
 		//CURRENT AND POWER MONITOR//
 	
 	}

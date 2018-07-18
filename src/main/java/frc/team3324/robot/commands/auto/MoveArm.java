@@ -1,6 +1,6 @@
-package frc.team3324.commands.auto;
+package frc.team3324.robot.commands.auto;
 
-import frc.team3324.Robot;
+import frc.team3324.robot.Robot;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -31,7 +31,7 @@ public class MoveArm extends Command {
     protected void execute() {
     	double goalPulse = armDistance;
     	double speed = 0.0;
-    	double currentPulse = Robot.mIntakeArm.getRawArm();
+    	double currentPulse = 0;
 		SmartDashboard.putNumber("CURRENTPULSE", currentPulse);
     	double diffPulse = goalPulse - currentPulse;
 

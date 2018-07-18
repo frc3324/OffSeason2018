@@ -29,7 +29,7 @@ public class Constants {
 	public final static int leftIntakeMotorPort = 7;
 	public final static int rightIntakeMotorPort = 3;
 	public final static int LINEAR_SLIDE_MOTOR_PORT = 1;
-	public final static int WINCH_PORT = 5;
+	public final static int testArm = 5;
 
 	/*
 	 * Sensor ports
@@ -39,9 +39,8 @@ public class Constants {
 	public final static int leftEncoderPortB = 1; //Checked Buckeye
 	public final static int rightEncoderPortA = 2; //Checked Buckeye
 	public final static int rightEncoderPortB = 3; //Checked Buckeye
-	public final static int ArmEncoderACLK = 6; //Checked Buckeye
-	public final static int ArmEncoderSW = 4; //Checked Buckeye
-	public final static int ArmEncoderDT = 5; //Checked Buckeye
+	public final static int armEncoderA = 4; //Checked Buckeye
+	public final static int armEncoderB = 5; //Checked Buckeye
 
 
 	/*

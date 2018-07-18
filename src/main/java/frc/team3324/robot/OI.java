@@ -99,7 +99,9 @@ public class OI {
 	public static double get1LeftYAxis() {
 		return gamepad1.getY(Hand.kLeft);
 	}
-
+	public static double get1RightYAxis() {
+		return gamepad1.getY(Hand.kRight);
+	}
 	public static boolean get1BButton() {
 		return gamepad1.getBButton();
 	}

@@ -3,12 +3,10 @@ package frc.team3324.robot.util;
 public class BasicPID {
     private double integral, error, last_error, deriv, kp, ki, kd, input, goal;
     private double last_input = 0;
-    public BasicPID(double kp, double ki, double kd, double input, double goal) {
+    public BasicPID(double kp, double ki, double kd) {
         this.kp = kp;
         this.ki = ki;
         this.kd = kd;
-        this.input = input;
-        this.goal = goal;
     }
     public double getPID(double input, double goal) {
         error = goal - input;
@@ -18,6 +16,11 @@ public class BasicPID {
 
         return (error * kp) + (integral * ki) - (deriv * kd);
 
+    }
+    public void updatePID(double kp, double ki, double kd) {
+    	this.kp = kp;
+    	this.ki = ki;
+    	this.kd = kd;
     }
 
 }
