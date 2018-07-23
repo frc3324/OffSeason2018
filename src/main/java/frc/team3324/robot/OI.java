@@ -88,6 +88,9 @@ public class OI {
 	public static boolean is1APressed() {
 		return gamepad1.getAButton();
 	}
+	public static boolean get1XButton() {
+		return gamepad1.getXButton();
+	}
 
 	public static boolean is1RightBumperPressed() {
 		return gamepad1.getBumper(Hand.kRight);

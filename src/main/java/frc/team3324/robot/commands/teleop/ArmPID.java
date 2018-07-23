@@ -16,12 +16,11 @@ public class ArmPID extends Command {
 	double error;
 	double goal;
 	double Kp;
-	boolean buttonB;
-	boolean buttonA;
+	boolean buttonB, buttonA, buttonX;
 	double last_error = 0;
 	BasicPID mpid;
     public ArmPID() {
-    	  mpid = new BasicPID(0.0024, 0.000003, 100);
+    	  mpid = new BasicPID(1024, 1.032, 0.251, 2.41, 21); // Ticks per rev, mass(kg), length(m), stall torque (Nm), gear reduction.
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }
@@ -35,13 +34,17 @@ public class ArmPID extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	testArmEncoder = Robot.mTestArm.getEncoder();
-    	joystickval = OI.get1RightYAxis();
-    	buttonB = OI.get1BButton();
+    	
+	joystickval = OI.get1RightYAxis();
+    	
+	buttonB = OI.get1BButton();
     	buttonA = OI.get1AButton();
     	buttonX = OI.get1XButton();
-    	SmartDashboard.putBoolean("Button", buttonB);
+    	
+	SmartDashboard.putBoolean("Button", buttonB);
     	SmartDashboard.putNumber("Port 2 Current", Robot.mTestArm.getCurrent(2));
-    	if (Math.abs(joystickval) > 0.1) {
+    	
+	if (Math.abs(joystickval) > 0.1) {
     		Robot.mTestArm.moveTestArm(joystickval);
     	} else if (buttonB == true) {
     		mpid.updatePID(0.00200625, 0.000068, -1.0);
@@ -60,7 +63,8 @@ public class ArmPID extends Command {
     		SmartDashboard.putNumber("Move", move);
     		Robot.mTestArm.moveTestArm(move);
     	} else if (buttonX == true) {
-    		Robot.mTestArm.moveTestArm(0.00);
+		Robot.mTestArm.moveTestArm(mpid.eStat(testArmEncoder));
+
     	}
     	SmartDashboard.putNumber("Arm Encoder", Robot.mTestArm.getEncoder());
     }
