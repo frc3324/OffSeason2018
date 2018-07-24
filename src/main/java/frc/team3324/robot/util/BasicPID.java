@@ -5,6 +5,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class BasicPID {
     private double integral, error, last_error, deriv, kp, ki, kd, input, goal, stationary_force, mass, length, systemConst;
     private double last_input = 0;
+    private double lastPos = 0;
     private int maxEncoder;
 
     public BasicPID(int maxEncoder, double mass, double length, double stallTorque, double gr) {
@@ -53,6 +54,18 @@ public class BasicPID {
 
 	return  (0.1 * (Math.cos(radiansPos))) + (voltageApp/12);
     }
-    
+   public double eDynamic(double encoderPos,double Goal) {
+	 
+	  double convertRadians = 162.9746617; // ticks per revolution / 2pi
+	  double radiansPos = encoderPos / convertRadians;
+	  double velocity = radiansPos - lastPos / 0.02;
+	  lastPos = radiansPos;
+	  double negativeVelocitySquared = -1 * (velocity * velocity);
+	  double decelerationCoefficient = negativeVelocitySquared / (Goal - radiansPos);
+          double inertia = decelerationCoefficient * mass * length;
+	  double eDynamic = inertia / systemConst;
+	  return eDynamic/12;
+   }
+	  
 
 }

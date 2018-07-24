@@ -60,7 +60,7 @@ public class ArmPID extends Command {
     		Kp = -0.0015;
     		double deriv = error - last_error;
     		this.last_error = error;
-    		double move = mpid.getPID(goal, testArmEncoder);
+    		double move = mpid.getPID(goal, testArmEncoder) + mpid.eDynamic(testArmEncoder, Math.toRadians(90)) - mpid.eStat(testArmEncoder);
     		SmartDashboard.putNumber("Move", move);
     		Robot.mTestArm.moveTestArm(move + (mpid.eStat(testArmEncoder)));
     	} else if (buttonX == true) {

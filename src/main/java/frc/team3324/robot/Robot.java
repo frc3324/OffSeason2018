@@ -21,6 +21,7 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.PIDController;
 import edu.wpi.first.wpilibj.PIDOutput;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
@@ -44,7 +45,7 @@ import jaci.pathfinder.followers.EncoderFollower;
  * Feb 8: Added agitator Talon and stuff - Xander
  *
  */
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
 	/*
 	 * Initialize SubSytems
