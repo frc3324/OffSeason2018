@@ -13,6 +13,7 @@ import frc.team3324.robot.util.BasicPID;
 public class ArmPID extends Command {
 	private double joystickval;
 	double testArmEncoder;
+	private double speed1;
 	double error;
 	double goal;
 	double Kp;
@@ -61,10 +62,12 @@ public class ArmPID extends Command {
     		this.last_error = error;
     		double move = mpid.getPID(goal, testArmEncoder);
     		SmartDashboard.putNumber("Move", move);
-    		Robot.mTestArm.moveTestArm(move);
+    		Robot.mTestArm.moveTestArm(move + (mpid.eStat(testArmEncoder)));
     	} else if (buttonX == true) {
-		Robot.mTestArm.moveTestArm(mpid.eStat(testArmEncoder));
-
+    		Robot.mTestArm.moveTestArm(-mpid.eStat(testArmEncoder));
+    		SmartDashboard.putNumber("Static Speed", mpid.eStat(testArmEncoder));
+    	} else {
+    		Robot.mTestArm.moveTestArm(0);
     	}
     	SmartDashboard.putNumber("Arm Encoder", Robot.mTestArm.getEncoder());
     }

@@ -1,5 +1,7 @@
 package frc.team3324.robot.util;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 public class BasicPID {
     private double integral, error, last_error, deriv, kp, ki, kd, input, goal, stationary_force, mass, length, systemConst;
     private double last_input = 0;
@@ -39,12 +41,17 @@ public class BasicPID {
 
     public double eStat(double encoderPos) {
 	 
-	double convertRadians = maxEncoder/2*(Math.PI);
+	double convertRadians = 162.9746617;
 	double radiansPos = encoderPos/convertRadians;
+	SmartDashboard.putNumber("CR", convertRadians);
+	SmartDashboard.putNumber("EncPos", encoderPos);
+	SmartDashboard.putNumber("RadPosCos", Math.cos(radiansPos));
 	double attributeConst = (Math.cos(radiansPos)) * mass * length * 9.8;
+	SmartDashboard.putNumber("Attrconst", attributeConst);
 	double voltageApp = attributeConst/systemConst;
+	SmartDashboard.putNumber("Voltage Applied", voltageApp);
 
-	return voltageApp/12;
+	return  (0.1 * (Math.cos(radiansPos))) + (voltageApp/12);
     }
     
 
