@@ -3,7 +3,7 @@ plugins {
     id "edu.wpi.first.GradleRIO" version "2018.06.21"
 }
 
-def ROBOT_CLASS = "frc.team3324.robot.Robot"
+def ROBOT_CLASS = "java.main.frc.team3324.robot.Robot"
 
 // Define my targets (RoboRIO) and artifacts (deployable files)
 // This is added by GradleRIO's backing project EmbeddedTools.
@@ -12,34 +12,49 @@ deploy {
         target("roborio", edu.wpi.first.gradlerio.frc.RoboRIO) {
             // Team can be overridden by command line, for use with VSCode
             team = getTeamOrDefault(3324)
+
+//            locations() {
+//                ssh {
+//                    address = "3324"  // Required. The address to try
+//                    user = 'myuser'             // Required. The user to login as
+//                    password = ''               // The password for the user. Default: blank (empty) string
+//                    ipv6 = false                // Are IPv6 addresses permitted? Default: false
+//                }
+//            }
+        }
+        artifacts {
+            artifact('frcJava', edu.wpi.first.gradlerio.frc.FRCJavaArtifact) {
+                targets << "roborio"
+                // Debug can be overridden by command line, for use with VSCode
+
+                jvmArgs << '-Xmx=128m'             // Set more JVM Arguments. Optional.
+                arguments << 'myCustomArgs'        // The command-line arguments to launch your jar with. Optional.
+                debug = getDebugOrDefault(true)    // Enable to enable java debugging on the RoboRIO. Default: false
+                debugPort = 8348                   // Set the debugging port. Default: 8348
+                robotCommand = './myOtherProgram'
+                // Set the contents of robotCommand. Optional, usually created depending on above values.
+            }
         }
     }
-    artifacts {
-        artifact('frcJava', edu.wpi.first.gradlerio.frc.FRCJavaArtifact) {
-            targets << "roborio"
-            // Debug can be overridden by command line, for use with VSCode
-            debug = getDebugOrDefault(false)
-        }
-    }
-}
 
 // Defining my dependencies. In this case, WPILib (+ friends), CTRE Toolsuite (Talon SRX)
 // and NavX.
-dependencies {
-    compile wpilib()
-    compile ctre()
-    compile navx()
-    compile pathfinder()
-}
+    dependencies {
+        compile wpilib()
+        compile ctre()
+        compile navx()
+        compile pathfinder()
+    }
 
 // Setting up my Jar File. In this case, adding all libraries into the main jar ('fat jar')
 // in order to make them all available at runtime. Also adding the manifest so WPILib
 // knows where to look for our Robot Class.
-jar {
-    from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
-    manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
-}
+    jar {
+        from configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+        manifest edu.wpi.first.gradlerio.GradleRIOPlugin.javaManifest(ROBOT_CLASS)
+    }
 
-task wrapper(type: Wrapper) {
-    gradleVersion = '4.7'
+    task wrapper(type: Wrapper) {
+        gradleVersion = '4.7'
+    }
 }

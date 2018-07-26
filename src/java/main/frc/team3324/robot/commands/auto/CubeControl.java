@@ -1,0 +1,56 @@
+package frc.team3324.robot.commands.auto;
+
+import frc.team3324.robot.Robot;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
+
+public class CubeControl extends Command {
+
+	private double speed;
+	private double time;
+
+	private boolean isFinished;
+
+	Timer timer = new Timer();
+
+	/**
+	 * Spin intake/outtake wheels.
+	 * Set a positive number to intake, a negative number to outtake.
+	 * Time in seconds.
+	 */
+    public CubeControl(double speed, double time) {
+    	this.speed = speed;
+    	this.time = time;
+    }
+
+    // Called just before this Command runs the first time
+    protected void initialize() {
+
+    	timer.start();
+    }
+
+    // Called repeatedly when this Command is scheduled to run
+    protected void execute() {
+    	if (timer.get() < time) {
+    		Robot.mCubeController.intake(-speed); //was -0.6
+    		isFinished = false;
+    	}
+    	else {
+    		Robot.mCubeController.intake(0.0);
+    		isFinished = true;
+    	}
+    }
+
+    // Make this return true when this Command no longer needs to run execute()
+    protected boolean isFinished() {
+        return isFinished;
+    }
+
+    // Called once after isFinished returns true
+    protected void end() { }
+
+    // Called when another command which requires one or more of the same
+    // subsystems is scheduled to run
+    protected void interrupted() { }
+}
