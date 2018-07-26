@@ -44,26 +44,38 @@ public class BasicPID {
 	 
 	double convertRadians = 162.9746617;
 	double radiansPos = encoderPos/convertRadians;
-	SmartDashboard.putNumber("CR", convertRadians);
-	SmartDashboard.putNumber("EncPos", encoderPos);
-	SmartDashboard.putNumber("RadPosCos", Math.cos(radiansPos));
+//	SmartDashboard.putNumber("CR", convertRadians);
+//	SmartDashboard.putNumber("EncPos", encoderPos);
+//	SmartDashboard.putNumber("RadPosCos", Math.cos(radiansPos));
 	double attributeConst = (Math.cos(radiansPos)) * mass * length * 9.8;
-	SmartDashboard.putNumber("Attrconst", attributeConst);
+//	SmartDashboard.putNumber("Attrconst", attributeConst);
 	double voltageApp = attributeConst/systemConst;
-	SmartDashboard.putNumber("Voltage Applied", voltageApp);
+//	SmartDashboard.putNumber("Voltage Applied", voltageApp);
 
-	return  (0.1 * (Math.cos(radiansPos))) + (voltageApp/12);
+	return  (0.08 * (Math.cos(radiansPos))) + (voltageApp/12);
     }
    public double eDynamic(double encoderPos,double Goal) {
-	 
-	  double convertRadians = 162.9746617; // ticks per revolution / 2pi
+      double decelerationCoefficient;
+	  
+      double convertRadians = 162.9746617; // ticks per revolution / 2pi
 	  double radiansPos = encoderPos / convertRadians;
-	  double velocity = radiansPos - lastPos / 0.02;
+	  
+	  double velocity = (radiansPos - lastPos) / 0.02;
+      SmartDashboard.putNumber("Vel", velocity);
+      SmartDashboard.putNumber("Pos", radiansPos);
+      SmartDashboard.putNumber("LastPos", lastPos);
 	  lastPos = radiansPos;
 	  double negativeVelocitySquared = -1 * (velocity * velocity);
-	  double decelerationCoefficient = negativeVelocitySquared / (Goal - radiansPos);
-          double inertia = decelerationCoefficient * mass * length;
+	  try {
+		  decelerationCoefficient = negativeVelocitySquared / (Goal - radiansPos);
+	  } catch(Exception e) {
+		  decelerationCoefficient = 0;
+	  }
+      
+	  double inertia = decelerationCoefficient * mass * length;
 	  double eDynamic = inertia / systemConst;
+
+	  SmartDashboard.putNumber("eDynamic", eDynamic/12);
 	  return eDynamic/12;
    }
 	  

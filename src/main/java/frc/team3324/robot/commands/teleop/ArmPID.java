@@ -13,7 +13,7 @@ import frc.team3324.robot.util.BasicPID;
 public class ArmPID extends Command {
 	private double joystickval;
 	double testArmEncoder;
-	private double speed1;
+	private double speed1, eDynamic, goal1;
 	double error;
 	double goal;
 	double Kp;
@@ -37,7 +37,7 @@ public class ArmPID extends Command {
     	testArmEncoder = Robot.mTestArm.getEncoder();
     	
 	joystickval = OI.get1RightYAxis();
-    	
+    eDynamic = mpid.eDynamic(testArmEncoder, goal1);
 	buttonB = OI.get1BButton();
     	buttonA = OI.get1AButton();
     	buttonX = OI.get1XButton();
@@ -48,11 +48,13 @@ public class ArmPID extends Command {
 	if (Math.abs(joystickval) > 0.1) {
     		Robot.mTestArm.moveTestArm(joystickval);
     	} else if (buttonB == true) {
-    		mpid.updatePID(0.00200625, 0.000068, -1.0);
-    		goal = 256;
-    		double move = mpid.getPID(goal, testArmEncoder);
+    		mpid.updatePID(0.0041925, 0.000, 0);
+    		goal = 256;	
+    		goal1 = 1.57079632675;
+//    		mpid.eDynamic(testArmEncoder, 1.57079632675);
+    		double move = mpid.getPID(testArmEncoder, goal) + (eDynamic) + mpid.eStat(testArmEncoder);
     		SmartDashboard.putNumber("Move", move);
-    		Robot.mTestArm.moveTestArm(move);
+    		Robot.mTestArm.moveTestArm(0.5 * (-move));
     	} else if (buttonA == true) {
     		mpid.updatePID(0.001953125, 0.0, 0);
     		goal = 0;
@@ -60,14 +62,20 @@ public class ArmPID extends Command {
     		Kp = -0.0015;
     		double deriv = error - last_error;
     		this.last_error = error;
-    		double move = mpid.getPID(goal, testArmEncoder) + mpid.eDynamic(testArmEncoder, Math.toRadians(90)) - mpid.eStat(testArmEncoder);
+    		goal1 = 0;
+    		double move = mpid.getPID(testArmEncoder, goal) + (eDynamic) + mpid.eStat(testArmEncoder);
     		SmartDashboard.putNumber("Move", move);
-    		Robot.mTestArm.moveTestArm(move + (mpid.eStat(testArmEncoder)));
+    		Robot.mTestArm.moveTestArm(0.75 * (-move));
     	} else if (buttonX == true) {
+    		mpid.updatePID(0.001953125, 0.0, 0);
+    		goal = 512;
+    		goal1 = 6.283185307;
+    		double move = mpid.getPID(testArmEncoder, goal) + (eDynamic) + mpid.eStat(testArmEncoder);
+    		SmartDashboard.putNumber("Move", move);
+    		Robot.mTestArm.moveTestArm(0.75 * (-move));
+    	} else {
     		Robot.mTestArm.moveTestArm(-mpid.eStat(testArmEncoder));
     		SmartDashboard.putNumber("Static Speed", mpid.eStat(testArmEncoder));
-    	} else {
-    		Robot.mTestArm.moveTestArm(0);
     	}
     	SmartDashboard.putNumber("Arm Encoder", Robot.mTestArm.getEncoder());
     }
