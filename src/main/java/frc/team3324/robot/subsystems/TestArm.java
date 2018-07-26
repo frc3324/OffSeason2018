@@ -15,8 +15,8 @@ public class TestArm extends Subsystem {
 	private WPI_TalonSRX testArm = new WPI_TalonSRX(Constants.TEST_ARM);
 
 	PowerDistributionPanel mPDP = new PowerDistributionPanel();
-    // Put methods for controlling this subsystem
-    // here. Call these from Commands.
+    	// Put methods for controlling this subsystem
+    	// here. Call these from Commands.
 	private double Kp;
 	private double Ki;
 	private double Kd;
@@ -27,25 +27,25 @@ public class TestArm extends Subsystem {
 
 	    testArm.set(speed);
 	}
+
 	public void breakArm() {
 
 	    testArm.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
 	}
+
 	public void coastArm() {
 
 		testArm.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
 	}
 
 	public double getEncoder() {
-
-	    return armEncoder.getRaw();
+		return armEncoder.getRaw();
 	}
 
 	public double getCurrent(int port) { //int currentPort
 
     	return mPDP.getCurrent(port);
-
-    }
+	}
 
 	public void initDefaultCommand() { }
 }

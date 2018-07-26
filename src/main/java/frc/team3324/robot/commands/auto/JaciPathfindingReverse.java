@@ -47,27 +47,24 @@ EncoderFollower right;
     		right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.lowgearSpeedMeters, 0);
 //    		this.left = left;
 //    		this.right = right;
-    		Robot.mGyro.clear();
-    		Robot.mGyro.clear();
-    		Robot.mGyro.clear();
+			Robot.mDriveTrain.clearGyro();
+			Robot.mDriveTrain.clearGyro();
+			Robot.mDriveTrain.clearGyro();
     		Robot.mDriveTrain.CoastMode();
-
     }
     Notifier notifier = new Notifier (() -> {
     	double Loutput = left.calculate(-Robot.mDriveTrain.getLeftDistanceRaw());
     	double Routput = right.calculate(Robot.mDriveTrain.getRightDistanceRaw());
-    	double gyro_heading = -Robot.mGyro.getYaw();    // Assuming the gyro is giving a value in degrees
+    	double gyro_heading = -Robot.mDriveTrain.getYaw();    // Assuming the gyro is giving a value in degrees
     	double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
     	angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
     	turn = 1.2 * (-1.0/80.0) * angleDifference;
-    	SmartDashboard.putNumber("Desired Heading", desired_heading);
-    	SmartDashboard.putNumber("gyro_heading", gyro_heading);
-    	SmartDashboard.putNumber("Turn:", turn);
     	Robot.mDriveTrain.tankDrive((Loutput + turn), (Routput - turn), false);
     	SmartDashboard.putNumber("Loutput", Loutput);
     	SmartDashboard.putNumber("Routput", Routput);
     	SmartDashboard.putBoolean("JaciFinished", false);
     });
+
     // Called just before this Command runs the first time
     protected void initialize() {
 
@@ -75,18 +72,7 @@ EncoderFollower right;
     }
 
     // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-////    	double r = right.calculate(encoder_position_right);
-//
-//        SmartDashboard.putNumber("Turn", turn);
-////    	double turn = 0;
-//    	Robot.mDriveTrain.printEncoder();
-//    	//    	setRightMotors(Routput - turn);
-//    	leftFinished = left.isFinished();
-//    	SmartDashboard.putBoolean("leftFinished", leftFinished);
-//    	rightFinished = right.isFinished();
-
-    }
+    protected void execute() { }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {

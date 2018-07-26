@@ -48,16 +48,16 @@ EncoderFollower right;
     		right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.lowgearSpeedMeters, 0);
 //    		this.left = left;
 //    		this.right = right;
-    		Robot.mGyro.clear();
-    		Robot.mGyro.clear();
-    		Robot.mGyro.clear();
+    		Robot.mDriveTrain.clearGyro();
+    		Robot.mDriveTrain.clearGyro();
+    		Robot.mDriveTrain.clearGyro();
     		Robot.mDriveTrain.CoastMode();
 
     }
     Notifier notifier = new Notifier (() -> {
     	double Loutput = left.calculate(Robot.mDriveTrain.getLeftDistanceRaw());
     	double Routput = right.calculate(-Robot.mDriveTrain.getRightDistanceRaw());
-    	double gyro_heading = -Robot.mGyro.getYaw();    // Assuming the gyro is giving a value in degrees
+    	double gyro_heading = -Robot.mDriveTrain.getYaw();    // Assuming the gyro is giving a value in degrees
     	double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
     	angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
     	turn = 1.2 * (-1.0/80.0) * angleDifference;
