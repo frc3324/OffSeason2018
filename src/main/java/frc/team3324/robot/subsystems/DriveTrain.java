@@ -23,7 +23,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 
     private static Encoder lEncoder = new Encoder(Constants.LEFT_ENCODER_PORT_A, Constants.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
     private static Encoder rEncoder = new Encoder(Constants.RIGHT_ENCODER_PORT_A, Constants.RIGHT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
-    private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.actualPulses;
+    private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.ACTUAL_PULSES;
 
     private static AHRS gyro = new AHRS(SPI.Port.kMXP);
 
@@ -49,38 +49,26 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
      * Set safety status of drivetrain motor controllers
      * @param status
      */
-    public void setSafetyEnabled(boolean status) {
-
-        mDrive.setSafetyEnabled(true);
-    }
+    public void setSafetyEnabled(boolean status) { mDrive.setSafetyEnabled(true); }
 
     /**
      * Get current through specified PDP port
      * @param port
      * @return
      */
-    public double getCurrent(int port) { //int currentPort
-
-        return mPDP.getCurrent(port);
-    }
+    public double getCurrent(int port) { return mPDP.getCurrent(port); }
 
     /**
      * Get distance of the left encoder in inches
      * @return
      */
-    public static double getLeftDistance() {
-
-        return lEncoder.getDistance();
-    }
+    public static double getLeftDistance() { return lEncoder.getDistance(); }
 
     /**
      * Get distance of the right encoder in inches
      * @return
      */
-    public static double getRightDistance() {
-
-        return rEncoder.getDistance();
-    }
+    public static double getRightDistance() { return rEncoder.getDistance(); }
 
     public static int getLeftDistanceRaw() {
         final int rawLDistance = lEncoder.getRaw();
@@ -108,31 +96,20 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
         SmartDashboard.putNumber("R Encoder Distance", getRightDistance());
     }
 
-    public double getPidAngle() {
-
-        return gyro.pidGet();
-    }
+    public double getPidAngle() { return gyro.pidGet(); }
 
     /**
      * Reset the gyro to zero
      * Avoid usage at all costs
      */
-    public void clearGyro() {
+    public void clearGyro() { gyro.reset(); }
 
-        gyro.reset();
-    }
-    public double getYaw() {
-
-        return gyro.getYaw();
-    }
+    public double getYaw() { return gyro.getYaw(); }
 
     @Override
     /* This function is invoked periodically by the PID Controller, */
     /* based upon navX-MXP yaw angle input and PID Coefficients.    */
-    public void pidWrite(double output) {
-
-        rotateToAngleRate = output;
-    }
+    public void pidWrite(double output) { rotateToAngleRate = output; }
 
     /**
      * Drive the robot with arcade drive
@@ -143,10 +120,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
      * @param squaredInputs
      *  Sensitivity set when true, false when not
      */
-    public void arcadeDrive(double xSpeed, double ySpeed, boolean squaredInputs) {
-
-        mDrive.arcadeDrive(xSpeed, ySpeed, squaredInputs);
-    }
+    public void arcadeDrive(double xSpeed, double ySpeed, boolean squaredInputs) { mDrive.arcadeDrive(xSpeed, ySpeed, squaredInputs); }
 
     /**
      * Drive the robot with tank drive.
@@ -157,9 +131,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
      * @param squaredInputs
      * 	Sensitivity set when true, false when not
      */
-    public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) {
-        mDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs);
-    }
+    public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) { mDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs); }
 
     public void BrakeMode() {
         frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -175,13 +147,9 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
         flMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
     }
 
-    public void setHighGear() {
-        gearShifter.set(DoubleSolenoid.Value.kForward);
-    }
+    public void setHighGear() { gearShifter.set(DoubleSolenoid.Value.kForward); }
 
-    public void setLowGear() {
-        gearShifter.set(DoubleSolenoid.Value.kReverse);
-    }
+    public void setLowGear() { gearShifter.set(DoubleSolenoid.Value.kReverse); }
 
     protected void initDefaultCommand() { }
 }

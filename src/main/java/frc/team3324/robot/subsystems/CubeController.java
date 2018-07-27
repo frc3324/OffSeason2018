@@ -2,9 +2,9 @@ package  frc.team3324.robot.subsystems;
 
 import  frc.team3324.robot.Constants;
 
-import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-
 import edu.wpi.first.wpilibj.command.Subsystem;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 public class CubeController extends Subsystem {
 

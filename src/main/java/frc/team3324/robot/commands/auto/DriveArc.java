@@ -29,7 +29,9 @@ public class DriveArc extends Command {
     // Called just before this Command runs the first time
     protected void initialize() {
     	Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
+
     	DriveTrain.clearEncoder();
+
     	innerSpeed = ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) - 1) / ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) + 1);
     	innerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius - (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
     	outerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius + (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
@@ -78,8 +80,7 @@ public class DriveArc extends Command {
     		encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
 
     		if (Math.abs(encoderDifference) < 0.5) {
-
-    			isFinished = true;
+    		    isFinished = true;
     		}
     		else {
     			leftSideSpeed = innerSpeed;
@@ -109,26 +110,18 @@ public class DriveArc extends Command {
     	}
 
     	// If the robot has an angle of zero, the robot will not move. This will be changed to incorporate rotate at some point.
-
     	else {
     		leftSideSpeed = 0;
     		rightSideSpeed = 0;
     	}
-
     	Robot.mDriveTrain.tankDrive(-leftSideSpeed, -rightSideSpeed, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-
-    	return isFinished;
-    }
+    protected boolean isFinished() { return isFinished; }
 
     // Called once after isFinished returns true
-    protected void end() {
-    	Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
-    	DriverStation.reportError("Finished_Arc", isFinished);
-    }
+    protected void end() { Robot.mDriveTrain.tankDrive(0.0, 0.0, false); }
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run

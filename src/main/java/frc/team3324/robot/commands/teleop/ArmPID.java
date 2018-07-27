@@ -8,7 +8,7 @@ import frc.team3324.robot.Robot;
 import frc.team3324.robot.util.BasicPID;
 
 public class ArmPID extends Command {
-	BasicPID mpid;
+	BasicPID mPID;
 
 	private double joystickVal;
 	private double testArmEncoder;
@@ -21,17 +21,10 @@ public class ArmPID extends Command {
 	private boolean buttonA;
 	private boolean buttonX;
 
-    public ArmPID() {
-    	  mpid = new BasicPID(1024, 1.032, 0.251, 2.41, 21); // Ticks per rev, mass(kg), length(m), stall torque (Nm), gear reduction.
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    }
+    public ArmPID() { mPID = new BasicPID(1024, 1.032, 0.251, 2.41, 21); } // Ticks per rev, mass(kg), length(m), stall torque (Nm), gear reduction.
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-
-        Robot.mTestArm.breakArm();
-    }
+    protected void initialize() { Robot.mTestArm.breakArm(); }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -44,23 +37,23 @@ public class ArmPID extends Command {
     	if (Math.abs(joystickVal) > 0.1) {
     		Robot.mTestArm.moveTestArm(joystickVal);
     	} else if (buttonB == true) {
-    		mpid.updatePID(0.00200625, 0.000068, -1.0);
+    		mPID.updatePID(0.00200625, 0.000068, -1.0);
     		goal = 256;
-    		double move = mpid.getPID(goal, testArmEncoder);
+    		double move = mPID.getPID(goal, testArmEncoder);
     		SmartDashboard.putNumber("Move", move);
     		Robot.mTestArm.moveTestArm(move);
     	} else if (buttonA == true) {
-    		mpid.updatePID(0.001953125, 0.0, 0);
+    		mPID.updatePID(0.001953125, 0.0, 0);
     		goal = 0;
     		error = goal - testArmEncoder;
     		double deriv = error - last_error;
     		this.last_error = error;
-    		double move = mpid.getPID(goal, testArmEncoder) + mpid.eDynamic(testArmEncoder, Math.toRadians(90)) - mpid.eStat(testArmEncoder);
+    		double move = mPID.getPID(goal, testArmEncoder) + mPID.eDynamic(testArmEncoder, Math.toRadians(90)) - mPID.eStat(testArmEncoder);
     		SmartDashboard.putNumber("Move", move);
-    		Robot.mTestArm.moveTestArm(move + (mpid.eStat(testArmEncoder)));
+    		Robot.mTestArm.moveTestArm(move + (mPID.eStat(testArmEncoder)));
     	} else if (buttonX == true) {
-    		Robot.mTestArm.moveTestArm(-mpid.eStat(testArmEncoder));
-    		SmartDashboard.putNumber("Static Speed", mpid.eStat(testArmEncoder));
+    		Robot.mTestArm.moveTestArm(-mPID.eStat(testArmEncoder));
+    		SmartDashboard.putNumber("Static Speed", mPID.eStat(testArmEncoder));
     	} else {
     		Robot.mTestArm.moveTestArm(0);
     	}
@@ -69,9 +62,7 @@ public class ArmPID extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+    protected boolean isFinished() { return false; }
 
     // Called once after isFinished returns true
     protected void end() { }

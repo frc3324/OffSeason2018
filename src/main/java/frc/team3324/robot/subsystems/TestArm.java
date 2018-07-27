@@ -23,29 +23,17 @@ public class TestArm extends Subsystem {
 
 	private static Encoder armEncoder = new Encoder(Constants.ARM_ENCODER_A, Constants.ARM_ENCODER_B, false, Encoder.EncodingType.k4X);
     
-	public void moveTestArm(double speed) {
+	public void moveTestArm(double speed) { testArm.set(speed); }
 
-	    testArm.set(speed);
-	}
+	public void breakArm() { testArm.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake); }
 
-	public void breakArm() {
-
-	    testArm.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
-	}
-
-	public void coastArm() {
-
-		testArm.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
-	}
+	public void coastArm() { testArm.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast); }
 
 	public double getEncoder() {
 		return armEncoder.getRaw();
 	}
 
-	public double getCurrent(int port) { //int currentPort
-
-    	return mPDP.getCurrent(port);
-	}
+	public double getCurrent(int port) { return mPDP.getCurrent(port); }
 
 	public void initDefaultCommand() { }
 }

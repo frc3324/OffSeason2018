@@ -13,10 +13,7 @@ public class LaunchCube extends Command {
 	/**
 	 * Spin wheels inward. <p>
 	 */
-    public LaunchCube() {
-
-        requires(Robot.mCubeController);
-    }
+    public LaunchCube() { requires(Robot.mCubeController); }
 
     // Called just before this Command runs the first time
     protected void initialize() { }

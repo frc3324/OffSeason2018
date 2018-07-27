@@ -19,14 +19,12 @@ public class IntakeArm extends Subsystem {
             armMotorLeft.setInverted(true);
         }
 	}
+
 	/**
 	 * Move the arm at the specified speed.
 	 * @param speed
 	 */
-	public void armMovement(double speed) {
-
-		armMotors.set(speed);
-	}
+	public void armMovement(double speed) { armMotors.set(speed); }
 
     public void initDefaultCommand() { }
 }

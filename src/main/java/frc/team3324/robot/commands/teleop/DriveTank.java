@@ -8,10 +8,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTank extends Command {
 
-	public DriveTank() {
-
-		requires(Robot.mDriveTrain);
-	}
+	public DriveTank() { requires(Robot.mDriveTrain); }
 
 	protected void execute() {
 		double leftY = OI.gamepad0.getY(GenericHID.Hand.kLeft);
@@ -20,7 +17,6 @@ public class DriveTank extends Command {
 		if (OI.gamepad0.getBumper(GenericHID.Hand.kRight)) {
 			leftY *= 0.5;
 		}
-
 		Robot.mDriveTrain.arcadeDrive(leftY, -leftX, true);
 	}
 

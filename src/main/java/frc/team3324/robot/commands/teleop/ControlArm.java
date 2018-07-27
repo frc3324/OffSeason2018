@@ -15,10 +15,7 @@ public class ControlArm extends Command {
 	/**
 	 * Move the arm to its opposite position when called. <p>
 	 */
-    public ControlArm() {
-
-        requires(Robot.mIntakeArm);
-    }
+    public ControlArm() { requires(Robot.mIntakeArm); }
 
     /*
      * Arm should be set to starting position.

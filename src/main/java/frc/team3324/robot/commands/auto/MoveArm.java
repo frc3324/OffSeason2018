@@ -19,10 +19,7 @@ public class MoveArm extends Command {
 	 * Zero being the back of the robot. <p>
 	 * Forty-five being the front of the robot. <p>
 	 */
-    public MoveArm(double distance) {
-
-    	armDistance = distance;
-    }
+    public MoveArm(double distance) { armDistance = distance; }
 
     // Called just before this Command runs the first time
     protected void initialize() { }
@@ -43,15 +40,11 @@ public class MoveArm extends Command {
     		Robot.mIntakeArm.armMovement(0.0);
     		isFinished = true;
     	}
-
     	Robot.mIntakeArm.armMovement(speed);
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-
-        return isFinished;
-    }
+    protected boolean isFinished() { return isFinished; }
 
     // Called once after isFinished returns true
     protected void end() { }

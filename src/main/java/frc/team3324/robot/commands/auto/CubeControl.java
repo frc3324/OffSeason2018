@@ -2,8 +2,8 @@ package frc.team3324.robot.commands.auto;
 
 import frc.team3324.robot.Robot;
 
-import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.Timer;
 
 public class CubeControl extends Command {
 
@@ -25,10 +25,7 @@ public class CubeControl extends Command {
     }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-
-    	timer.start();
-    }
+    protected void initialize() { timer.start(); }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {

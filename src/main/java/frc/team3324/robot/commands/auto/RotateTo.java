@@ -29,11 +29,12 @@ public class RotateTo extends Command {
 	 *  Rotates to specified angle (from current angle) at specified speed
 	 */
 	protected void execute() {
-
         double measuredAngle = Robot.mDriveTrain.getYaw();
-        if (measuredAngle < 0.0) {
-            measuredAngle += 360;
-        }
+        if (measuredAngle < 180.0) {
+            measuredAngle -= 360;
+        } else if (measuredAngle < -180) {
+        	measuredAngle += 360;
+		}
         angleToTravel = specifiedAngle - measuredAngle;
         runningSpeed = angleToTravel * kP;
 
@@ -48,19 +49,13 @@ public class RotateTo extends Command {
      * When the current angle is equal to the specified angle, returns true.
      */
     @Override
-    protected boolean isFinished() {
-
-    	return isFinished;
-    }
+    protected boolean isFinished() { return isFinished; }
 
 	/**
 	 * Does nothing after the current angle is equal to the specified angle
 	 */
 	@Override
-	protected void end() {
-
-		Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
-	}
+	protected void end() { Robot.mDriveTrain.tankDrive(0.0, 0.0, false); }
 
 	@Override
 	protected void interrupted() {}

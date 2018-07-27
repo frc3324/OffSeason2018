@@ -30,10 +30,7 @@ public class ShiftGears extends Command {
 		return false;
     }
 
-    protected void end() {
-
-		end();
-    }
+    protected void end() { end(); }
 
     protected void interrupted() { }
 }

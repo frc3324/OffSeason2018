@@ -16,16 +16,15 @@ import jaci.pathfinder.modifiers.TankModifier;
  *
  */
 public class JaciPathfinding extends Command {
-double x;
-double y;
-double angle;
-boolean thing = true;
-double turn;
-double angleDifference;
-boolean leftFinished;
-boolean rightFinished;
-EncoderFollower left;
-EncoderFollower right;
+
+    private double angleDifference;
+    private double turn;
+
+    private boolean leftFinished = false;
+
+    EncoderFollower left;
+    EncoderFollower right;
+
     public JaciPathfinding(double x1, double y1, double angle1, double x2, double y2, double angle2) {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
@@ -35,25 +34,26 @@ EncoderFollower right;
 //    		    new Waypoint(4.039, 0.2413, Pathfinder.d2r(-90)),                        // Waypoint @ x=-3.429, y=0, exit angle=0 radians
 //    		    new Waypoint(4.353, 4.5, 0),
 
-    		};
-    	    Robot.mDriveTrain.clearEncoder();
-    		Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.02, Constants.lowgearSpeedMeters*0.7, 4.5, 9);
-    		Trajectory trajectory = Pathfinder.generate(points, config);
-    		TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
-    		left = new EncoderFollower(modifier.getLeftTrajectory());
-    		right = new EncoderFollower(modifier.getRightTrajectory());
-    		left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.actualPulses, Constants.wheelDiameterMeters);
-    		right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.actualPulses, Constants.wheelDiameterMeters);
-    		left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.lowgearSpeedMeters, 0);
-    		right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.lowgearSpeedMeters, 0);
-//    		this.left = left;
-//    		this.right = right;
-    		Robot.mDriveTrain.clearGyro();
-    		Robot.mDriveTrain.clearGyro();
-    		Robot.mDriveTrain.clearGyro();
-    		Robot.mDriveTrain.CoastMode();
+		};
 
+    	Robot.mDriveTrain.clearEncoder();
+    	Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.02, Constants.LOW_GEAR_METERS_PER_SECOND*0.7, 4.5, 9);
+    	Trajectory trajectory = Pathfinder.generate(points, config);
+    	TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
+    	left = new EncoderFollower(modifier.getLeftTrajectory());
+    	right = new EncoderFollower(modifier.getRightTrajectory());
+    	left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS);
+    	right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS);
+    	left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
+    	right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
+//    	this.left = left;
+//    	this.right = right;
+		Robot.mDriveTrain.clearGyro();
+		Robot.mDriveTrain.clearGyro();
+		Robot.mDriveTrain.clearGyro();
+		Robot.mDriveTrain.CoastMode();
     }
+
     Notifier notifier = new Notifier (() -> {
     	double Loutput = left.calculate(Robot.mDriveTrain.getLeftDistanceRaw());
     	double Routput = right.calculate(-Robot.mDriveTrain.getRightDistanceRaw());
@@ -69,15 +69,11 @@ EncoderFollower right;
     	SmartDashboard.putNumber("Routput", Routput);
     	SmartDashboard.putBoolean("JaciFinished", false);
     });
+
     // Called just before this Command runs the first time
-    protected void initialize() {
+    protected void initialize() { notifier.startPeriodic(0.02); }
 
-    		notifier.startPeriodic(0.02);
-    }
-
-    protected void execute() {
-
-    }
+    protected void execute() { }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
@@ -103,7 +99,5 @@ EncoderFollower right;
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() {
-    	Robot.mDriveTrain.CoastMode();
-    }
+    protected void interrupted() { Robot.mDriveTrain.CoastMode(); }
 }

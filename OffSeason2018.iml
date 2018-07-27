@@ -2,47 +2,106 @@
 <module type="JAVA_MODULE" version="4">
   <component name="FacetManager">
     <facet type="FRC_FACET" name="FRC">
-      <configuration />
+      <configuration/>
     </facet>
   </component>
   <component name="NewModuleRootManager" inherit-compiler-output="true">
-    <exclude-output />
-    <content url="file://$MODULE_DIR$">
-      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false" />
+    <exclude-output/>
+    <content url="file://$MODULE_DIR$/">
+      <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$" isTestSource="false"/>
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false"/>
+      <excludeFolder url="file://$MODULE_DIR$/.gradle"/>
+      <excludeFolder url="file://$MODULE_DIR$/build"/>
     </content>
-    <orderEntry type="inheritedJdk" />
-    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="inheritedJdk"/>
+    <orderEntry type="sourceFolder" forTests="false"/>
     <orderEntry type="module-library">
-      <library name="WPILib Libraries">
+      <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/wpilib/java/current/lib" />
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2018.3.2/e3191e0075cf0e5d1e953ff8b854db3c716ee73f/wpilibj-java-2018.3.2.jar!/"/>
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/wpilib/java/current/lib" />
-        </JAVADOC>
+        <JAVADOC/>
         <SOURCES>
-          <root url="file://$USER_HOME$/wpilib/java/current/lib" />
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpilibj/wpilibj-java/2018.3.2/66af8fda88c4eea15952cbce6c72b889d551773a/wpilibj-java-2018.3.2-sources.jar!/"/>
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/wpilib/java/current/lib" recursive="true" />
-        <jarDirectory url="file://$USER_HOME$/wpilib/java/current/lib" recursive="true" type="JAVADOC" />
-        <jarDirectory url="file://$USER_HOME$/wpilib/java/current/lib" recursive="true" type="SOURCES" />
       </library>
     </orderEntry>
     <orderEntry type="module-library">
-      <library name="WPILib User Lib Directory">
+      <library>
         <CLASSES>
-          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.ntcore/ntcore-java/4.0.0/990c1034226bc7fd81d2a21ee3de08ba477fbcfb/ntcore-java-4.0.0.jar!/"/>
         </CLASSES>
-        <JAVADOC>
-          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
-        </JAVADOC>
+        <JAVADOC/>
         <SOURCES>
-          <root url="file://$USER_HOME$/wpilib/user/java/lib" />
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.ntcore/ntcore-java/4.0.0/43b974107629beb83d40c0ac43d92107343056ac/ntcore-java-4.0.0-sources.jar!/"/>
         </SOURCES>
-        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" />
-        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" type="JAVADOC" />
-        <jarDirectory url="file://$USER_HOME$/wpilib/user/java/lib" recursive="true" type="SOURCES" />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpiutil/wpiutil-java/3.1.0/14247d5f28aff116176e946ebc6861dcdd8631df/wpiutil-java-3.1.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.wpiutil/wpiutil-java/3.1.0/159e59abb5b4ab21b9f7947bade5f65e7528858c/wpiutil-java-3.1.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/org.opencv/opencv-java/3.2.0/c65e242eaf6ff4b086d45b0254f4511b6a072a65/opencv-java-3.2.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/org.opencv/opencv-java/3.2.0/da5215ba2c023701a644802a1fcd93749061f90d/opencv-java-3.2.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.cscore/cscore-java/1.2.0/c9566ae38df752482652a3d591fe7ede7fde7899/cscore-java-1.2.0.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/edu.wpi.first.cscore/cscore-java/1.2.0/753c649bb16620f1287d2e6fd29c2d949eac23f3/cscore-java-1.2.0-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/openrio.mirror.third.ctre/CTRE-phoenix-java/5.2.1.1/469f4905ff49fe297be19c0c6724e27b444fbb5c/CTRE-phoenix-java-5.2.1.1.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/openrio.mirror.third.ctre/CTRE-phoenix-java/5.2.1.1/6ef53967acb57f11e0be1e3d825d8a013945bc27/CTRE-phoenix-java-5.2.1.1-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/openrio.mirror.third.kauailabs/navx-java/3.0.346/b29a636918ae632c90be1b0e4161ac7bd0853731/navx-java-3.0.346.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/openrio.mirror.third.kauailabs/navx-java/3.0.346/bf97f8511e36c87629248aa073f92660a413547d/navx-java-3.0.346-sources.jar!/"/>
+        </SOURCES>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/jaci.pathfinder/Pathfinder-Java/1.8/c37dcf790766dd0c023cc00c57bb2e2e4e58f487/Pathfinder-Java-1.8.jar!/"/>
+        </CLASSES>
+        <JAVADOC/>
+        <SOURCES>
+          <root url="jar:///Users/emilypang/.gradle/caches/modules-2/files-2.1/jaci.pathfinder/Pathfinder-Java/1.8/f99c341d8a52f2445060989aef1af8ab7bb458ed/Pathfinder-Java-1.8-sources.jar!/"/>
+        </SOURCES>
       </library>
     </orderEntry>
   </component>

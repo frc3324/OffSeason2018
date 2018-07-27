@@ -1,11 +1,10 @@
 package frc.team3324.robot;
 
+import frc.team3324.robot.subsystems.CubeController;
 import frc.team3324.robot.commands.auto.DriveForward;
 import frc.team3324.robot.commands.DriveGroup;
-import frc.team3324.robot.subsystems.CubeController;
 import frc.team3324.robot.subsystems.DriveTrain;
 import frc.team3324.robot.subsystems.IntakeArm;
-import frc.team3324.robot.OI;
 import frc.team3324.robot.subsystems.TestArm;
 
 import edu.wpi.first.wpilibj.CameraServer;
@@ -25,7 +24,6 @@ public class Robot extends IterativeRobot {
     /*
      * Instantiate subsystems
      */
-    public OI mOI;
     public static final DriveTrain mDriveTrain = new DriveTrain();
     public static final CubeController mCubeController = new CubeController();
     public static final IntakeArm mIntakeArm = new IntakeArm();
@@ -35,28 +33,29 @@ public class Robot extends IterativeRobot {
     Command selectedCommand;
     SendableChooser<Integer> autoSelector = new SendableChooser<Integer>();
 
-    String gameData;
-    char firstLetter;
-    String positionString;
-    String infoString;
-    int defaultSet = 0;
-    int left = 1;
-    int middle = 2;
-    int right = 3;
+    private int defaultSet = 0;
+    private int left = 1;
+    private int middle = 2;
+    private int right = 3;
+
+    private String gameData;
+    private String infoString;
+    private String positionString;
+
+    private char firstLetter;
 
     /**
      * When the robot first boots up, initialize all of the gamepads, motor
      * controllers, sensors, and subsystems
      */
     public void robotInit() {
-        mOI = new OI();
         /* Initialize AUTO selecter UI */
         autoSelector.addDefault("Default", defaultSet);
         autoSelector.addObject("Left position", left);
         autoSelector.addObject("Middle position", middle);
         autoSelector.addObject("Right position", right);
+
         SmartDashboard.putData("CHOOSE ONE", autoSelector);
-//        pdp = new PowerDistributionPanel();
     }
 
     /**
@@ -65,6 +64,7 @@ public class Robot extends IterativeRobot {
     public void disabledInit() {
         CameraServer.getInstance().startAutomaticCapture();
         CameraServer.getInstance().putVideo("Camera output", 1280, 720);
+
         DriveTrain.clearEncoder();
     }
 
@@ -124,7 +124,6 @@ public class Robot extends IterativeRobot {
             }
             else {
                 DriverStation.reportError("No game data received.", false);
-//				selectedCommand = new JaciTestLeft();
                 infoString = "No game data received.";
             }
 
@@ -143,18 +142,12 @@ public class Robot extends IterativeRobot {
     /**
      * Runs constantly when autonomous is enabled
      */
-    public void autonomousPeriodic() {
-
-        Scheduler.getInstance().run(); // Run scheduler
-    }
+    public void autonomousPeriodic() { Scheduler.getInstance().run(); }
 
     /**
      * Initialize whatever you need to when the robot starts teleop
      */
-    public void teleopInit() {
-
-        Scheduler.getInstance().add(new DriveGroup());
-    }
+    public void teleopInit() { Scheduler.getInstance().add(new DriveGroup()); }
 
     /**
      * Runs constantly when teleop is enabled
@@ -168,6 +161,5 @@ public class Robot extends IterativeRobot {
     /**
      * Runs constantly when test mode is enabled
      */
-    public void testPeriodic() {
-    }
+    public void testPeriodic() { }
 }

@@ -16,16 +16,10 @@ public class Pause extends Command {
 
 	private boolean isFinished = false;
 
-    public Pause(double time) {
-
-        this.time = time;
-    }
+    public Pause(double time) { this.time = time; }
 
     // Called just before this Command runs the first time
-    protected void initialize() {
-
-        timer.start();
-    }
+    protected void initialize() { timer.start(); }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
@@ -40,10 +34,7 @@ public class Pause extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-
-        return isFinished;
-    }
+    protected boolean isFinished() { return isFinished; }
 
     // Called once after isFinished returns true
     protected void end() { }
