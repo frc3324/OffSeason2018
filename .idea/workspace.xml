@@ -5,33 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d1380021-7dc1-4056-b1f5-8b7c9030f305" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OffSeason2018.iml" beforeDir="false" afterPath="$PROJECT_DIR$/OffSeason2018.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/Constants.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/Constants.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/OI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/OI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/Robot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/Robot.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/CubeControl.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/CubeControl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/DriveArc.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/DriveArc.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/JaciPathfinding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/JaciPathfinding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/JaciPathfindingReverse.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/MoveArm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/MoveArm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/Pause.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/Pause.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/RotateTo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/RotateTo.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/groups/JaciTestLeft.java" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ControlArm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ControlArm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/DriveTank.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/DriveTank.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/LaunchCube.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/LaunchCube.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ShiftGears.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ShiftGears.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/CubeController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/CubeController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/DriveTrain.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/DriveTrain.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/IntakeArm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/IntakeArm.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/TestArm.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/TestArm.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/util/BasicPID.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/frc/team3324/robot/util/BasicPID.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -55,7 +29,29 @@
     </system>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ArmPID.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="150">
+              <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BasicPID.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/frc/team3324/robot/util/BasicPID.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="273">
+              <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -91,6 +87,7 @@
       <find>default</find>
       <find>leftfini</find>
       <find>maxEncoder</find>
+      <find>input</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -151,7 +148,6 @@
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/MoveArm.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/Pause.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/auto/RotateTo.java" />
-        <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ControlArm.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/DriveTank.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/LaunchCube.java" />
@@ -160,6 +156,7 @@
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/DriveTrain.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/IntakeArm.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/subsystems/TestArm.java" />
+        <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java" />
         <option value="$PROJECT_DIR$/src/main/java/frc/team3324/robot/util/BasicPID.java" />
       </list>
     </option>
@@ -302,6 +299,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
       <window_info anchor="right" id="Palette" order="3" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3292978" />
@@ -517,13 +515,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="581">
-          <caret line="64" column="12" selection-start-line="64" selection-start-column="12" selection-end-line="64" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ControlArm.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -596,10 +587,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/frc/team3324/robot/commands/teleop/ArmPID.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" lean-forward="true" selection-start-line="10" selection-end-line="10" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/frc/team3324/robot/util/BasicPID.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="33" lean-forward="true" selection-start-column="33" selection-end-column="33" />
+        <state relative-caret-position="273">
+          <caret line="35" column="5" lean-forward="true" selection-start-line="35" selection-start-column="5" selection-end-line="35" selection-end-column="5" />
         </state>
       </provider>
     </entry>
