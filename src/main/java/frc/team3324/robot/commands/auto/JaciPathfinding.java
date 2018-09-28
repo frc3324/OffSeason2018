@@ -1,5 +1,7 @@
 package frc.team3324.robot.commands.auto;
 
+import java.io.File;
+
 import frc.team3324.robot.Constants;
 import frc.team3324.robot.Robot;
 
@@ -17,41 +19,67 @@ import jaci.pathfinder.modifiers.TankModifier;
  */
 public class JaciPathfinding extends Command {
 
-    private double angleDifference;
-    private double turn;
+    private double angleDifference, turn;
+    private String path;
+    private Trajectory trajectory;
 
     private boolean leftFinished = false;
+    private boolean fileExists;
 
     EncoderFollower left;
     EncoderFollower right;
 
-    public JaciPathfinding(double x1, double y1, double angle1, double x2, double y2, double angle2) {
-        // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
-    	Waypoint[] points = new Waypoint[] {
-    		    new Waypoint(x1, y1, Pathfinder.d2r(angle1)),      // Waypoint @ x=-0, y=-0, exit angle=-45 degrees
-    		    new Waypoint(x2, y2, Pathfinder.d2r(angle2)),                           // Waypoint @ x=0, y=0,   exit angle=0 radians
-//    		    new Waypoint(4.039, 0.2413, Pathfinder.d2r(-90)),                        // Waypoint @ x=-3.429, y=0, exit angle=0 radians
-//    		    new Waypoint(4.353, 4.5, 0),
-
+    public JaciPathfinding(String path, Boolean fileExists) {
+		this.path = path;
+    	Waypoint[] Defaultpoints = new Waypoint[] {
+    		    new Waypoint(0, 0, 0),      // Waypoint @ x=-0, y=-0, exit angle= 0 degrees
+                new Waypoint(3.048,0,0),
 		};
+    	Waypoint[] LMiddlepoints = new Waypoint[] {
+    	        new Waypoint(0,0,0),
+                new Waypoint(3.556, 1.2192, 0),
+        };
+        Waypoint[] RMiddlepoints = new Waypoint[] {
+                new Waypoint(0,0,0),
+                new Waypoint(3.556,-1.9812,0),
+        };
+    	Waypoint[] LLLeftpoints = new Waypoint[] {
+    		    new Waypoint(0, 0, 0),      // Waypoint @ x=-0, y=-0, exit angle= 0 degrees
+                new Waypoint(4.2672,0.4064,Pathfinder.d2r(90)),
+		};
+    	Waypoint[] RRRightpoints = new Waypoint[] {
+    	        new Waypoint(0,0,0),
+                new Waypoint(4.2672, -1.8288, 90),
+        };
 
-    	Robot.mDriveTrain.clearEncoder();
     	Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.02, Constants.LOW_GEAR_METERS_PER_SECOND*0.7, 4.5, 9);
-    	Trajectory trajectory = Pathfinder.generate(points, config);
+    	if (path == "LLLeft" && fileExists == false) {
+			trajectory = Pathfinder.generate(LLLeftpoints, config);
+			File LLLeft = new File("LLLeft.traj");
+			Pathfinder.writeToFile(LLLeft, trajectory);
+		} else if (path == "RRRight" && fileExists == true) {
+    		File LLLeft = new File("LLLeft.traj");
+    		trajectory = Pathfinder.readFromFile(LLLeft);
+		} else if (path == "RRRight" && fileExists == false) {
+    	   trajectory = Pathfinder.generate(RRRightpoints, config);
+    	   File RRRight = new File("RRRight.traj");
+    	   Pathfinder.writeToFile(RRRight, trajectory);
+        } else if (path == "RRRight" && fileExists == true) {
+    	    File RRRight = new File("RRRight.traj");
+    	    trajectory = Pathfinder.readFromFile(RRRight);
+        } else {
+    		trajectory = Pathfinder.generate(Defaultpoints, config);
+		}
     	TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
     	left = new EncoderFollower(modifier.getLeftTrajectory());
     	right = new EncoderFollower(modifier.getRightTrajectory());
     	left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS);
-    	right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS);
+    	right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS); // TODO: Right encoder is negative, can fix in subsystem
     	left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
-    	right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
-//    	this.left = left;
-//    	this.right = right;
+    	right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0); // TODO: Tune these
 		Robot.mDriveTrain.clearGyro();
-		Robot.mDriveTrain.clearGyro();
-		Robot.mDriveTrain.clearGyro();
-		Robot.mDriveTrain.CoastMode();
+		Robot.mDriveTrain.BrakeMode();
+
     }
 
     Notifier notifier = new Notifier (() -> {
@@ -64,14 +92,14 @@ public class JaciPathfinding extends Command {
     	SmartDashboard.putNumber("Desired Heading", desired_heading);
     	SmartDashboard.putNumber("gyro_heading", gyro_heading);
     	SmartDashboard.putNumber("Turn:", turn);
-    	Robot.mDriveTrain.tankDrive(-(Loutput + turn), -(Routput - turn), false);
     	SmartDashboard.putNumber("Loutput", Loutput);
     	SmartDashboard.putNumber("Routput", Routput);
     	SmartDashboard.putBoolean("JaciFinished", false);
+    	Robot.mDriveTrain.tankDrive(-(Loutput + turn), -(Routput - turn), false);
     });
 
     // Called just before this Command runs the first time
-    protected void initialize() { notifier.startPeriodic(0.02); }
+    protected void initialize() { notifier.startPeriodic(0.01); }
 
     protected void execute() { }
 
