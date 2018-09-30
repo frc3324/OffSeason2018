@@ -42,6 +42,7 @@ public class Robot extends IterativeRobot {
     private int left = 1;
     private int middle = 2;
     private int right = 3;
+    private int positionInt;
 
     private String gameData;
     private String infoString;
@@ -83,9 +84,11 @@ public class Robot extends IterativeRobot {
 
         if (autoSelector.getSelected() == defaultSet) {
             positionString = "Default position";
+            positionInt = 0;
         }
         else if (autoSelector.getSelected() == left) {
             positionString = "Left position";
+            positionInt = 1;
         }
         else if (autoSelector.getSelected() == middle) {
             positionString = "Middle position";
@@ -107,7 +110,7 @@ public class Robot extends IterativeRobot {
 				selectedCommand = new LLeft();
                 infoString = "LLeft";
             }
-            if (firstLetter == 'L' && positionString.equals("Middle position")) {
+            else if (firstLetter == 'L' && positionString.equals("Middle position")) {
 				selectedCommand = new LMiddle();
                 infoString = "LMiddle";
             }
@@ -115,7 +118,7 @@ public class Robot extends IterativeRobot {
 				selectedCommand = new Default();
                 infoString = "LRight";
             }
-            if (firstLetter == 'L'  && positionString.equals("Right position")){
+            else if (firstLetter == 'L'  && positionString.equals("Right position")){
 				selectedCommand = new Default();
                 infoString = "RLeft";
             }
@@ -124,7 +127,7 @@ public class Robot extends IterativeRobot {
                 infoString = "RMiddle";
             }
             else if (firstLetter == 'R') {
-				selectedCommand = new RRight();
+  				       selectedCommand = new RRight();
                 infoString = "RRight";
             }
             else {
