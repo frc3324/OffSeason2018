@@ -1,6 +1,7 @@
 package frc.team3324.robot.commands.auto;
 
 import java.io.File;
+import java.nio.file.Path;
 
 import frc.team3324.robot.Constants;
 import frc.team3324.robot.Robot;
@@ -52,12 +53,12 @@ public class JaciPathfinding extends Command {
                 new Waypoint(4.2672, -1.8288, 90),
         };
 
-    	Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.02, Constants.LOW_GEAR_METERS_PER_SECOND*0.7, 4.5, 9);
+    	Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.01, Constants.LOW_GEAR_METERS_PER_SECOND*0.7, 4.5, 9);
     	if (path == "LLLeft" && fileExists == false) {
 			trajectory = Pathfinder.generate(LLLeftpoints, config);
 			File LLLeft = new File("LLLeft.traj");
 			Pathfinder.writeToFile(LLLeft, trajectory);
-		} else if (path == "RRRight" && fileExists == true) {
+		} else if (path == "LLLeft" && fileExists == true) {
     		File LLLeft = new File("LLLeft.traj");
     		trajectory = Pathfinder.readFromFile(LLLeft);
 		} else if (path == "RRRight" && fileExists == false) {
@@ -67,7 +68,21 @@ public class JaciPathfinding extends Command {
         } else if (path == "RRRight" && fileExists == true) {
     	    File RRRight = new File("RRRight.traj");
     	    trajectory = Pathfinder.readFromFile(RRRight);
-        } else {
+        } else if (path == "RMiddle" && fileExists == true) {
+    		File RMiddle = new File("RMiddle.traj");
+    		trajectory = Pathfinder.readFromFile(RMiddle);
+		} else if (path == "RMiddle" && fileExists == false) {
+    		trajectory = Pathfinder.generate(RMiddlepoints, config);
+    		File RMiddle = new File("RMiddle.traj");
+    		Pathfinder.writeToFile(RMiddle, trajectory);
+		} else if (path == "LMiddle" && fileExists == true) {
+    		File LMiddle = new File("LMiddle.traj");
+    		trajectory = Pathfinder.readFromFile(LMiddle);
+		} else if (path == "LMiddle" && fileExists == false) {
+    		trajectory = Pathfinder.generate(LMiddlepoints, config);
+    		File LMiddle = new File("LMiddle.traj");
+    		Pathfinder.writeToFile(LMiddle, trajectory);
+		} else {
     		trajectory = Pathfinder.generate(Defaultpoints, config);
 		}
     	TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);

@@ -6,6 +6,11 @@ import frc.team3324.robot.commands.DriveGroup;
 import frc.team3324.robot.subsystems.DriveTrain;
 import frc.team3324.robot.subsystems.IntakeArm;
 import frc.team3324.robot.subsystems.TestArm;
+import frc.team3324.robot.commands.auto.groups.LMiddle;
+import frc.team3324.robot.commands.auto.groups.RMiddle;
+import frc.team3324.robot.commands.auto.groups.RRight;
+import frc.team3324.robot.commands.auto.groups.LLeft;
+import frc.team3324.robot.commands.auto.groups.Default;
 
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
@@ -99,27 +104,27 @@ public class Robot extends IterativeRobot {
                 infoString = "Drive forward (default)";
             }
             else if (firstLetter == 'L' && positionString.equals("Left position")) {
-//				selectedCommand = new LLeft();
+				selectedCommand = new LLeft();
                 infoString = "LLeft";
             }
             if (firstLetter == 'L' && positionString.equals("Middle position")) {
-//				selectedCommand = new LMiddleArc();
+				selectedCommand = new LMiddle();
                 infoString = "LMiddle";
             }
             else if (firstLetter == 'L' && positionString.equals("Right position")) {
-//				selectedCommand = new LRight();
+				selectedCommand = new Default();
                 infoString = "LRight";
             }
             if (firstLetter == 'L'  && positionString.equals("Right position")){
-//				selectedCommand = new RLeft();
+				selectedCommand = new Default();
                 infoString = "RLeft";
             }
             else if (firstLetter == 'R' && positionString.equals("Middle position")) {
-//				selectedCommand = new RMiddleArc();
+				selectedCommand = new RMiddle();
                 infoString = "RMiddle";
             }
             else if (firstLetter == 'R') {
-//				selectedCommand = new RRight();
+				selectedCommand = new RRight();
                 infoString = "RRight";
             }
             else {
