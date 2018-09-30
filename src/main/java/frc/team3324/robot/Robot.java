@@ -63,7 +63,9 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("CHOOSE ONE", autoSelector);
     }
-
+    public void robotPeriodic() {
+      gameData = DriverStation.getInstance().getGameSpecificMessage();
+    }
     /**
      * Initialize whatever you need to when the robot becomes disables
      */
@@ -79,8 +81,6 @@ public class Robot extends IterativeRobot {
      * the driver station
      */
     public void disabledPeriodic() {
-
-        gameData = DriverStation.getInstance().getGameSpecificMessage();
 
         if (autoSelector.getSelected() == defaultSet) {
             positionString = "Default position";

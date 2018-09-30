@@ -55,33 +55,33 @@ public class JaciPathfinding extends Command {
                 new Waypoint(4.2672, -1.8288, 90),
         };
     	Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.01, Constants.LOW_GEAR_METERS_PER_SECOND*0.7, 4.5, 9);
-    	if (path == "LLLeft" && fileExists == false) {
+    	if (path.equals("LLLeft") && fileExists == false) {
 			trajectory = Pathfinder.generate(LLLeftpoints, config);
-			File LLLeft = new File("LLLeft.traj");
-			 // Pathfinder.writeToCSV(LLLeft, trajectory);
-		} else if (path == "LLLeft" && fileExists == true) {
+      SmartDashboard.putBoolean("LLeft Jaci:", true);
+		} else if (path.equals("LLLeft") && fileExists == true) {
     		File LLLeft = new File("LLLeft.traj");
     		trajectory = Pathfinder.readFromFile(LLLeft);
-		} else if (path == "RRRight" && fileExists == false) {
+		} else if (path.equals("RRRight") && fileExists == false) {
     	   trajectory = Pathfinder.generate(RRRightpoints, config);
     	   File RRRight = new File("RRRight.traj");
     	   // Pathfinder.writeToFile(RRRight, trajectory);
-        } else if (path == "RRRight" && fileExists == true) {
+       } else if (path.equals("RRRight") && fileExists == true) {
     	    File RRRight = new File("RRRight.traj");
     	    trajectory = Pathfinder.readFromFile(RRRight);
-        } else if (path == "RMiddle" && fileExists == true) {
+        } else if (path.equals("RMiddle") && fileExists == true) {
     		File RMiddle = new File("RMiddle.traj");
     		trajectory = Pathfinder.readFromFile(RMiddle);
-		} else if (path == "RMiddle" && fileExists == false) {
+		} else if (path.equals("RMiddle") && fileExists == false) {
     		trajectory = Pathfinder.generate(RMiddlepoints, config);
     		File RMiddle = new File("RMiddle.traj");
     		// Pathfinder.writeToFile(RMiddle, trajectory);
-		} else if (path == "LMiddle" && fileExists == true) {
+		} else if (path.equals("LMiddle") && fileExists == true) {
     		File LMiddle = new File("LMiddle.traj");
     		trajectory = Pathfinder.readFromFile(LMiddle);
-		} else if (path == "LMiddle" && fileExists == false) {
+		} else if (path.equals("LMiddle") && fileExists == false) {
     		trajectory = Pathfinder.generate(LMiddlepoints, config);
     		File LMiddle = new File("LMiddle.traj");
+        SmartDashboard.putBoolean("LLeft Jaci:", false);
     		// Pathfinder.writeToFile(LMiddle, trajectory);
 		} else {
     		trajectory = Pathfinder.generate(Defaultpoints, config);
