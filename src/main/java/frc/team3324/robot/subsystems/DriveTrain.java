@@ -12,7 +12,6 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import com.kauailabs.navx.frc.AHRS;
 
-// TODO Add encoders, gyro, and/or other sensors
 
 // Identify Drivetrain as a subsystem (class)
 public class DriveTrain extends	Subsystem implements PIDOutput {
@@ -37,7 +36,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
     WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.BR_MOTOR_PORT);
     SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 
-    DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
+    public DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
 
     public DriveTrain() {
         mDrive.setSafetyEnabled(true);
@@ -110,28 +109,6 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
     /* This function is invoked periodically by the PID Controller, */
     /* based upon navX-MXP yaw angle input and PID Coefficients.    */
     public void pidWrite(double output) { rotateToAngleRate = output; }
-
-    /**
-     * Drive the robot with arcade drive
-     * @param xSpeed
-     *  Speed of robot in the x direction
-     * @param ySpeed
-     *  Speed of robot in the y direction
-     * @param squaredInputs
-     *  Sensitivity set when true, false when not
-     */
-    public void arcadeDrive(double xSpeed, double ySpeed, boolean squaredInputs) { mDrive.arcadeDrive(xSpeed, ySpeed, squaredInputs); }
-
-    /**
-     * Drive the robot with tank drive.
-     * @param leftSpeed
-     * 	Speed of left side wheels of robot
-     * @param rightSpeed
-     * 	Speed of right side wheels of robot
-     * @param squaredInputs
-     * 	Sensitivity set when true, false when not
-     */
-    public void tankDrive(double leftSpeed, double rightSpeed, boolean squaredInputs) { mDrive.tankDrive(leftSpeed, rightSpeed, squaredInputs); }
 
     public void BrakeMode() {
         frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);

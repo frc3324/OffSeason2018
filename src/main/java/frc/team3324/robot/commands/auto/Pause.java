@@ -24,11 +24,11 @@ public class Pause extends Command {
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
     	if (timer.get() < time) {
-    		Robot.mDriveTrain.arcadeDrive(0.0, 0.0, false);
+    		Robot.mDriveTrain.mDrive.arcadeDrive(0.0, 0.0, false);
     		isFinished = false;
     	}
     	else {
-    		Robot.mDriveTrain.arcadeDrive(0.0, 0.0, false);
+    		Robot.mDriveTrain.mDrive.arcadeDrive(0.0, 0.0, false);
     		isFinished = true;
     	}
     }

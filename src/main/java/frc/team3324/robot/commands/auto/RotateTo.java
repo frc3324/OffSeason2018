@@ -38,7 +38,7 @@ public class RotateTo extends Command {
         angleToTravel = specifiedAngle - measuredAngle;
         runningSpeed = angleToTravel * kP;
 
-        Robot.mDriveTrain.arcadeDrive(0, runningSpeed, false);
+        Robot.mDriveTrain.mDrive.arcadeDrive(0, runningSpeed, false);
 
         if (angleToTravel == 0.0) {
             isFinished = true;
@@ -55,7 +55,7 @@ public class RotateTo extends Command {
 	 * Does nothing after the current angle is equal to the specified angle
 	 */
 	@Override
-	protected void end() { Robot.mDriveTrain.tankDrive(0.0, 0.0, false); }
+	protected void end() { Robot.mDriveTrain.mDrive.tankDrive(0.0, 0.0, false); }
 
 	@Override
 	protected void interrupted() {}

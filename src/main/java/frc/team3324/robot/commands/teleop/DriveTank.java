@@ -17,7 +17,7 @@ public class DriveTank extends Command {
 		if (OI.gamepad0.getBumper(GenericHID.Hand.kRight)) {
 			leftY *= 0.5;
 		}
-		Robot.mDriveTrain.arcadeDrive(leftY, -leftX, true);
+		Robot.mDriveTrain.mDrive.arcadeDrive(leftY, -leftX, true);
 	}
 
 	@Override

@@ -104,13 +104,10 @@ public class JaciPathfinding extends Command {
     	double desired_heading = Pathfinder.r2d(left.getHeading());  // Should also be in degrees
     	angleDifference = Pathfinder.boundHalfDegrees(desired_heading - gyro_heading);
     	turn = 1.2 * (-1.0/80.0) * angleDifference;
-    	SmartDashboard.putNumber("Desired Heading", desired_heading);
-    	SmartDashboard.putNumber("gyro_heading", gyro_heading);
-    	SmartDashboard.putNumber("Turn:", turn);
     	SmartDashboard.putNumber("Loutput", Loutput);
     	SmartDashboard.putNumber("Routput", Routput);
     	SmartDashboard.putBoolean("JaciFinished", false);
-    	Robot.mDriveTrain.tankDrive(-(Loutput + turn), -(Routput - turn), false);
+    	Robot.mDriveTrain.mDrive.tankDrive(-(Loutput + turn), -(Routput - turn), false);
     });
 
     // Called just before this Command runs the first time
@@ -136,7 +133,7 @@ public class JaciPathfinding extends Command {
     // Called once after isFinished returns true
     protected void end() {
     	SmartDashboard.putBoolean("leftFinished", leftFinished);
-    	Robot.mDriveTrain.tankDrive(0, 0, false);
+    	Robot.mDriveTrain.mDrive.tankDrive(0, 0, false);
     	Robot.mDriveTrain.CoastMode();
     }
 

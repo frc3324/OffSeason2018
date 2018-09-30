@@ -45,7 +45,7 @@ public class DriveForward extends Command {
 		lSpeed = speed / straightenValue;
 		rSpeed = speed * straightenValue;
 		// TODO What? "make speed negative to go forward in real life" Fix.
-		Robot.mDriveTrain.tankDrive(1.0, 1.0, false);
+		Robot.mDriveTrain.mDrive.tankDrive(1.0, 1.0, false);
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class DriveForward extends Command {
 	}
 
 	protected void end() {
-		Robot.mDriveTrain.tankDrive(0.0, 0.0, false);
+		Robot.mDriveTrain.mDrive.tankDrive(0.0, 0.0, false);
 	}
 
 	@Override
