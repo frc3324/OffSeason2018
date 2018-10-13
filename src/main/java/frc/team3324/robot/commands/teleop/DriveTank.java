@@ -11,8 +11,8 @@ public class DriveTank extends Command {
 	public DriveTank() { requires(Robot.mDriveTrain); }
 
 	protected void execute() {
-		double leftY = OI.gamepad0.getY(GenericHID.Hand.kLeft);
-		double leftX = OI.gamepad0.getX(GenericHID.Hand.kLeft);
+		double leftY = OI.gamepad0.getY(GenericHID.Hand.kLeft); \\ Get the Y (Up/Down) value of the LEFT Joystick
+		double leftX = OI.gamepad0.getX(GenericHID.Hand.kLeft); \\ Get the X (Left/Right) value of the LEFT Joystick
 
 		if (OI.gamepad0.getBumper(GenericHID.Hand.kRight)) {
 			leftY *= 0.5;
