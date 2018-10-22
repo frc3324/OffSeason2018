@@ -1,6 +1,6 @@
-package  frc.team3324.robot.subsystems;
+package frc.team3324.robot.subsystems;
 
-import  frc.team3324.robot.Constants;
+import frc.team3324.robot.Constants;
 
 import edu.wpi.first.wpilibj.*;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -12,25 +12,29 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import com.kauailabs.navx.frc.AHRS;
 
-
 // Identify Drivetrain as a subsystem (class)
-public class DriveTrain extends	Subsystem implements PIDOutput {
+public class DriveTrain extends Subsystem implements PIDOutput {
 
     double rotateToAngleRate;
 
     private DoubleSolenoid gearShifter = new DoubleSolenoid(0, 1);
 
-    private static Encoder lEncoder = new Encoder(Constants.LEFT_ENCODER_PORT_A, Constants.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
-    private static Encoder rEncoder = new Encoder(Constants.RIGHT_ENCODER_PORT_A, Constants.RIGHT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
+    private static Encoder lEncoder =
+        new Encoder(Constants.LEFT_ENCODER_PORT_A, Constants.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
+    private static Encoder rEncoder =
+        new Encoder(Constants.RIGHT_ENCODER_PORT_A, Constants.RIGHT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
     private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.ACTUAL_PULSES;
 
     private static AHRS gyro = new AHRS(SPI.Port.kMXP);
 
     PowerDistributionPanel mPDP = new PowerDistributionPanel();
 
-    WPI_VictorSPX flMotor = new WPI_VictorSPX(Constants.FL_MOTOR_PORT); // Instantiate the motors as a new TalonSRX motor controller
+    WPI_VictorSPX flMotor =
+        new WPI_VictorSPX(Constants.FL_MOTOR_PORT); // Instantiate the motors as a new TalonSRX motor controller
     WPI_VictorSPX blMotor = new WPI_VictorSPX(Constants.BL_MOTOR_PORT);
-    SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor, blMotor); // Combine the left motors into one lMotors speed controller group
+    SpeedControllerGroup lMotors =
+        new SpeedControllerGroup(flMotor,
+                                 blMotor); // Combine the left motors into one lMotors speed controller group
 
     WPI_VictorSPX frMotor = new WPI_VictorSPX(Constants.FR_MOTOR_PORT); //repeat for right motors
     WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.BR_MOTOR_PORT);
@@ -76,7 +80,7 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 
     public static int getRightDistanceRaw() {
         final double rawLDistance = rEncoder.getRaw();
-        return (int) rawLDistance;
+        return (int)rawLDistance;
     }
 
     /**
@@ -108,7 +112,9 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
     @Override
     /* This function is invoked periodically by the PID Controller, */
     /* based upon navX-MXP yaw angle input and PID Coefficients.    */
-    public void pidWrite(double output) { rotateToAngleRate = output; }
+    public void pidWrite(double output) {
+        rotateToAngleRate = output;
+    }
 
     public void BrakeMode() {
         frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -128,5 +134,5 @@ public class DriveTrain extends	Subsystem implements PIDOutput {
 
     public void setLowGear() { gearShifter.set(DoubleSolenoid.Value.kReverse); }
 
-    protected void initDefaultCommand() { }
+    protected void initDefaultCommand() {}
 }

@@ -8,8 +8,8 @@ import edu.wpi.first.wpilibj.XboxController;
  */
 public class OI {
 
-	public static XboxController gamepad0 = new XboxController(0);
-	public static XboxController gamepad1 = new XboxController(1);
+    public static XboxController gamepad0 = new XboxController(0);
+    public static XboxController gamepad1 = new XboxController(1);
 
-	public OI() { }
+    public OI() {}
 }

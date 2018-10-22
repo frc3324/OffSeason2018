@@ -8,29 +8,27 @@ import edu.wpi.first.wpilibj.GenericHID;
 
 public class DriveTank extends Command {
 
-	public DriveTank() { requires(Robot.mDriveTrain); }
+    public DriveTank() { requires(Robot.mDriveTrain); }
 
-	protected void execute() {
-		double leftY = OI.gamepad0.getY(GenericHID.Hand.kLeft);
-		double leftX = OI.gamepad0.getX(GenericHID.Hand.kLeft);
+    protected void execute() {
+        double leftY = OI.gamepad0.getY(GenericHID.Hand.kLeft);
+        double leftX = OI.gamepad0.getX(GenericHID.Hand.kLeft);
 
-		if (OI.gamepad0.getBumper(GenericHID.Hand.kRight)) {
-			leftY *= 0.5;
-		}
-		Robot.mDriveTrain.mDrive.arcadeDrive(leftY, -leftX, true);
-	}
+        if (OI.gamepad0.getBumper(GenericHID.Hand.kRight)) { leftY *= 0.5; }
+        Robot.mDriveTrain.mDrive.arcadeDrive(leftY, -leftX, true);
+    }
 
-	@Override
-	protected void initialize() { }
+    @Override
+    protected void initialize() {}
 
-	@Override
-	protected void end() { }
+    @Override
+    protected void end() {}
 
-	@Override
-	protected boolean isFinished() {
-		return false;
-	}
+    @Override
+    protected boolean isFinished() {
+        return false;
+    }
 
-	@Override
-	protected void interrupted() { }
+    @Override
+    protected void interrupted() {}
 }

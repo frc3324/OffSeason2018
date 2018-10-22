@@ -1,4 +1,4 @@
-package  frc.team3324.robot.util;
+package frc.team3324.robot.util;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -9,10 +9,10 @@ public class BasicPID {
     private int maxEncoder;
 
     public BasicPID(int maxEncoder, double mass, double length, double stallTorque, double gr) {
-	    this.maxEncoder = maxEncoder;
-	    this.mass = mass;
-	    this.length = length; 
-	    this.systemConst = (stallTorque / 12) * gr;
+        this.maxEncoder = maxEncoder;
+        this.mass = mass;
+        this.length = length;
+        this.systemConst = (stallTorque / 12) * gr;
     }
 
     public double getPID(double input, double goal) {
@@ -25,12 +25,15 @@ public class BasicPID {
     }
 
     public void updatePID(double kp, double ki, double kd) {
-    	this.kp = kp;
-    	this.ki = ki;
-    	this.kd = kd;
+        this.kp = kp;
+        this.ki = ki;
+        this.kd = kd;
     }
-
-    public void getPIDF(double Kp, double Ki, double Kd, double Kf, double position, double goal, double dt) { // take in P, I, D, and F coefficients, as well as position(input), your goal, as well as the time between runs (AKA the speed of your loop, this should be as consistent as possible).
+    /**
+     * take in P, I, D, and F coefficients, as well as position(input), your goal, as well as the time between runs (AKA the speed of your loop, this should be as consistent as possible).
+     *
+     */
+    public void getPIDF(double Kp, double Ki, double Kd, double Kf, double position, double goal, double dt) {
         error = goal - position;
         integral = integral + error;
     }
@@ -39,13 +42,13 @@ public class BasicPID {
         double convertRadians = 162.9746617;
         double radiansPos = encoderPos / convertRadians;
         double attributeConst = (Math.cos(radiansPos)) * mass * length * 9.8;
-        double voltageApp = attributeConst/systemConst;
+        double voltageApp = attributeConst / systemConst;
         SmartDashboard.putNumber("Voltage Applied", voltageApp);
 
-	    return  (0.1 * (Math.cos(radiansPos))) + (voltageApp/12);
+        return (0.1 * (Math.cos(radiansPos))) + (voltageApp / 12);
     }
 
-    public double eDynamic(double encoderPos,double Goal) {
+    public double eDynamic(double encoderPos, double Goal) {
         double convertRadians = 162.9746617; // ticks per revolution / 2pi
         double radiansPos = encoderPos / convertRadians;
         double velocity = (radiansPos - lastPos) / 0.02;
@@ -55,14 +58,12 @@ public class BasicPID {
 
         try {
             decelerationCoefficient = negativeVelocitySquared / (Goal - radiansPos);
-        } catch(Exception e) {
-            decelerationCoefficient = 0;
-        }
+        } catch (Exception e) { decelerationCoefficient = 0; }
 
         double inertia = decelerationCoefficient * mass * length;
         double eDynamic = inertia / systemConst;
 
-        SmartDashboard.putNumber("eDynamic", eDynamic/12);
-        return eDynamic/12;
+        SmartDashboard.putNumber("eDynamic", eDynamic / 12);
+        return eDynamic / 12;
     }
 }

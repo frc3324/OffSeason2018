@@ -12,7 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class ControlArm extends Command {
 
-	/**
+    /**
 	 * Move the arm to its opposite position when called. <p>
 	 */
     public ControlArm() { requires(Robot.mIntakeArm); }
@@ -20,27 +20,25 @@ public class ControlArm extends Command {
     /*
      * Arm should be set to starting position.
      */
-    protected void initialize() { }
+    protected void initialize() {}
 
     // Called repeatedly when this Command is scheduled to run
     /*
      * Voltage to motor speed
      */
     protected void execute() {
-    	double leftY = OI.gamepad1.getY(GenericHID.Hand.kLeft);
+        double leftY = OI.gamepad1.getY(GenericHID.Hand.kLeft);
 
-    	Robot.mIntakeArm.armMovement(leftY);
+        Robot.mIntakeArm.armMovement(leftY);
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-        return false;
-    }
+    protected boolean isFinished() { return false; }
 
     // Called once after isFinished returns true
-    protected void end() { }
+    protected void end() {}
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() { }
+    protected void interrupted() {}
 }

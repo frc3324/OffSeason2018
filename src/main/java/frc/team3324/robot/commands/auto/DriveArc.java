@@ -12,13 +12,13 @@ import edu.wpi.first.wpilibj.command.Command;
  */
 public class DriveArc extends Command {
 
-	private double circleAngle, circleRadius;
-	private double leftSideSpeed, rightSideSpeed;
-	private double innerSpeed;
-	private double leftDistance, rightDistance, innerDistance, outerDistance;
-	private double encoderDifference;
+    private double circleAngle, circleRadius;
+    private double leftSideSpeed, rightSideSpeed;
+    private double innerSpeed;
+    private double leftDistance, rightDistance, innerDistance, outerDistance;
+    private double encoderDifference;
 
-	private boolean isFinished;
+    private boolean isFinished;
 
     public DriveArc(double angle, double radius) {
         requires(Robot.mDriveTrain);
@@ -28,21 +28,24 @@ public class DriveArc extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	Robot.mDriveTrain.mDrive.tankDrive(0.0, 0.0, false);
+        Robot.mDriveTrain.mDrive.tankDrive(0.0, 0.0, false);
 
-    	DriveTrain.clearEncoder();
+        DriveTrain.clearEncoder();
 
-    	innerSpeed = ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) - 1) / ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) + 1);
-    	innerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius - (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
-    	outerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius + (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
+        innerSpeed = ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) - 1) /
+                     ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) + 1);
+        innerDistance =
+            (circleAngle / 360) * (2 * Math.PI) * ((circleRadius - (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
+        outerDistance =
+            (circleAngle / 360) * (2 * Math.PI) * ((circleRadius + (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
     }
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	// Turning left
-    	if (circleAngle < 0) {
+        // Turning left
+        if (circleAngle < 0) {
 
-    		/*
+            /*
     		 * When turning left, the right wheels have to travel more than the left wheels.
     		 *
     		 * Use the formula for circumference, 2PIr to find the circumference of the circle according to the
@@ -57,10 +60,10 @@ public class DriveArc extends Command {
     		 *  leftDistance and rightDistance are in inches, and are not yet converted to encoder pulses.
     		*/
 
-    		leftDistance = innerDistance;
-    		rightDistance = outerDistance;
+            leftDistance = innerDistance;
+            rightDistance = outerDistance;
 
-    		/*
+            /*
     		 * Encoder pulse count is used to check that the robot has traveled the correct distance.
     		 *
     		 * It does not matter which side is checked, but for consistency, the outside side has been chosen.
@@ -77,44 +80,42 @@ public class DriveArc extends Command {
     		 * the command will be keep running until complete.
     		 */
 
-    		encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
+            encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
 
-    		if (Math.abs(encoderDifference) < 0.5) {
-    		    isFinished = true;
-    		}
-    		else {
-    			leftSideSpeed = innerSpeed;
-        		rightSideSpeed = 1.0;
-        		isFinished = false;
-    		}
-    	}
+            if (Math.abs(encoderDifference) < 0.5) {
+                isFinished = true;
+            } else {
+                leftSideSpeed = innerSpeed;
+                rightSideSpeed = 1.0;
+                isFinished = false;
+            }
+        }
 
-    	// Turning right
-    	else if (circleAngle > 0) {
-    		/*
+        // Turning right
+        else if (circleAngle > 0) {
+            /*
     		 * When turning right, the left wheels have to travel more than the right wheels.
     		 * The math is the same as the left turn, except the wheels are switched.
     		 */
-    		leftDistance = outerDistance;
-    		rightDistance = innerDistance;
-    		encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
+            leftDistance = outerDistance;
+            rightDistance = innerDistance;
+            encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
 
-    		if (Math.abs(encoderDifference) < 0.1 || encoderDifference < 0) {
-    			isFinished = true;
-    		}
-    		else {
-    			rightSideSpeed = innerSpeed;
-        		leftSideSpeed = 1.0;
-        		isFinished = false;
-    		}
-    	}
+            if (Math.abs(encoderDifference) < 0.1 || encoderDifference < 0) {
+                isFinished = true;
+            } else {
+                rightSideSpeed = innerSpeed;
+                leftSideSpeed = 1.0;
+                isFinished = false;
+            }
+        }
 
-    	// If the robot has an angle of zero, the robot will not move. This will be changed to incorporate rotate at some point.
-    	else {
-    		leftSideSpeed = 0;
-    		rightSideSpeed = 0;
-    	}
-    	Robot.mDriveTrain.mDrive.tankDrive(-leftSideSpeed, -rightSideSpeed, false);
+        // If the robot has an angle of zero, the robot will not move. This will be changed to incorporate rotate at some point.
+        else {
+            leftSideSpeed = 0;
+            rightSideSpeed = 0;
+        }
+        Robot.mDriveTrain.mDrive.tankDrive(-leftSideSpeed, -rightSideSpeed, false);
     }
 
     // Make this return true when this Command no longer needs to run execute()
@@ -125,5 +126,5 @@ public class DriveArc extends Command {
 
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
-    protected void interrupted() { }
+    protected void interrupted() {}
 }

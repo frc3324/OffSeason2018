@@ -13,17 +13,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveGroup extends CommandGroup {
 
-	/**
+    /**
 	 * Adds teleop commands to be run in parallel:<br>
 	 * &emsp;DriveTank<br>
 	 * &emsp;PressureSwitch<br>
 	 * &emsp;ControlArm<br>
 	 */
-	public DriveGroup() {
-		this.addParallel(new DriveTank()); //gamepad0, joysticks
-		this.addParallel(new ControlArm()); //gamepad1, left joystick
-		this.addParallel(new LaunchCube());
-		this.addParallel(new ShiftGears());
-		this.addParallel(new ArmPID());
-	}
+    public DriveGroup() {
+        this.addParallel(new DriveTank());  //gamepad0, joysticks
+        this.addParallel(new ControlArm()); //gamepad1, left joystick
+        this.addParallel(new LaunchCube());
+        this.addParallel(new ShiftGears());
+        this.addParallel(new ArmPID());
+    }
 }
