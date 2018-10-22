@@ -18,14 +18,6 @@ steps:
     publishJUnitResults: false
     testResultsFiles: '**/TEST-*.xml'
     tasks: 'build'
-- job: Styleguide
-   pool:
-     vmImage: 'Ubuntu 16.04'
-
-   steps:
-      - script: |
-          sudo apt-get update -y
-          sudo apt-get install clang-format-5.0 -y
 - task: ShellScript@2
   inputs: 
     scriptPath: ./format.sh
