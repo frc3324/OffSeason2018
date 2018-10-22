@@ -1,8 +1,9 @@
-# OffSeason2018
+[![Build Status](https://dev.azure.com/Metrobots/Metrobots/_apis/build/status/frc3324.OffSeason2018)](https://dev.azure.com/Metrobots/Metrobots/_build/latest?definitionId=1)
 ## Table of Contents
 - [GradleRIO](https://github.com/frc3324/OffSeason2018#gradlerio)
   - [Essential Commands](https://github.com/frc3324/OffSeason2018#essential-commands)
   - [Other Commands](https://github.com/frc3324/OffSeason2018#other-important-commands-in-order-of-importance)
+- Continuous Integration and Azure Pipelines
 ### GradleRIO
 GradleRIO is a Gradle plugin that is developed by Jaci (@JacisNonsense). First and WPILib have seen great potential in GradleRIO and have made it the standard tool for deploying in the 2019 season. Many teams have incorporated GradleRIO before this change though, and it has far faster deploy and compile times while being far more versatile. GradleRIO has been setup now before the 2019 season and is yet to be tested on a robot.
 #### Essential Commands
