@@ -20,7 +20,7 @@ steps:
     tasks: 'build'
 - task: ShellScript@2
   inputs: 
-    scriptPath: ./format.sh
+    scriptPath: ./run.sh
     #args: '' # Optional
     #disableAutoCwd: false # Optional
     #cwd: '' # Optional
