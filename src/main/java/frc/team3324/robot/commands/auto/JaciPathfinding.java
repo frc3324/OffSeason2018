@@ -56,48 +56,53 @@ public class JaciPathfinding extends Command {
             new Waypoint(0, 0, 0),
             new Waypoint(4.2672, -1.8288, 90),
         };
-    	Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW,  0.01, Constants.LOW_GEAR_METERS_PER_SECOND*0.7, 4.5, 9);
-    	if (path.equals("LLLeft") && fileExists == false) {
-			trajectory = Pathfinder.generate(LLLeftpoints, config);
-      SmartDashboard.putBoolean("LLeft Jaci:", true);
-		} else if (path.equals("LLLeft") && fileExists == true) {
-    		File LLLeft = new File("LLLeft.traj");
-    		trajectory = Pathfinder.readFromFile(LLLeft);
-		} else if (path.equals("RRRight") && fileExists == false) {
-    	   trajectory = Pathfinder.generate(RRRightpoints, config);
-    	   File RRRight = new File("RRRight.traj");
-    	   // Pathfinder.writeToFile(RRRight, trajectory);
-       } else if (path.equals("RRRight") && fileExists == true) {
-    	    File RRRight = new File("RRRight.traj");
-    	    trajectory = Pathfinder.readFromFile(RRRight);
+        Trajectory.Config config =
+            new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.01,
+                                  Constants.LOW_GEAR_METERS_PER_SECOND * 0.7, 4.5, 9);
+        if (path.equals("LLLeft") && fileExists == false) {
+            trajectory = Pathfinder.generate(LLLeftpoints, config);
+            SmartDashboard.putBoolean("LLeft Jaci:", true);
+        } else if (path.equals("LLLeft") && fileExists == true) {
+            File LLLeft = new File("LLLeft.traj");
+            trajectory = Pathfinder.readFromFile(LLLeft);
+        } else if (path.equals("RRRight") && fileExists == false) {
+            trajectory = Pathfinder.generate(RRRightpoints, config);
+            File RRRight = new File("RRRight.traj");
+            // Pathfinder.writeToFile(RRRight, trajectory);
+        } else if (path.equals("RRRight") && fileExists == true) {
+            File RRRight = new File("RRRight.traj");
+            trajectory = Pathfinder.readFromFile(RRRight);
         } else if (path.equals("RMiddle") && fileExists == true) {
-    		File RMiddle = new File("RMiddle.traj");
-    		trajectory = Pathfinder.readFromFile(RMiddle);
-		} else if (path.equals("RMiddle") && fileExists == false) {
-    		trajectory = Pathfinder.generate(RMiddlepoints, config);
-    		File RMiddle = new File("RMiddle.traj");
-    		// Pathfinder.writeToFile(RMiddle, trajectory);
-		} else if (path.equals("LMiddle") && fileExists == true) {
-    		File LMiddle = new File("LMiddle.traj");
-    		trajectory = Pathfinder.readFromFile(LMiddle);
-		} else if (path.equals("LMiddle") && fileExists == false) {
-    		trajectory = Pathfinder.generate(LMiddlepoints, config);
-    		File LMiddle = new File("LMiddle.traj");
-        SmartDashboard.putBoolean("LLeft Jaci:", false);
-    		// Pathfinder.writeToFile(LMiddle, trajectory);
-		} else {
-    		trajectory = Pathfinder.generate(Defaultpoints, config);
-		}
-    DriverStation.reportError("Here6.", false);
-    	TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
-    	left = new EncoderFollower(modifier.getLeftTrajectory());
-    	right = new EncoderFollower(modifier.getRightTrajectory());
-    	left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS);
-    	right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS); // TODO: Right encoder is negative, can fix in subsystem
-    	left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
-    	right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0); // TODO: Tune these
-		Robot.mDriveTrain.clearGyro();
-		Robot.mDriveTrain.BrakeMode();
+            File RMiddle = new File("RMiddle.traj");
+            trajectory = Pathfinder.readFromFile(RMiddle);
+        } else if (path.equals("RMiddle") && fileExists == false) {
+            trajectory = Pathfinder.generate(RMiddlepoints, config);
+            File RMiddle = new File("RMiddle.traj");
+            // Pathfinder.writeToFile(RMiddle, trajectory);
+        } else if (path.equals("LMiddle") && fileExists == true) {
+            File LMiddle = new File("LMiddle.traj");
+            trajectory = Pathfinder.readFromFile(LMiddle);
+        } else if (path.equals("LMiddle") && fileExists == false) {
+            trajectory = Pathfinder.generate(LMiddlepoints, config);
+            File LMiddle = new File("LMiddle.traj");
+            SmartDashboard.putBoolean("LLeft Jaci:", false);
+            // Pathfinder.writeToFile(LMiddle, trajectory);
+        } else {
+            trajectory = Pathfinder.generate(Defaultpoints, config);
+        }
+        DriverStation.reportError("Here6.", false);
+        TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
+        left = new EncoderFollower(modifier.getLeftTrajectory());
+        right = new EncoderFollower(modifier.getRightTrajectory());
+        left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.ACTUAL_PULSES,
+                              Constants.WHEEL_DIAMETER_METERS);
+        right.configureEncoder(
+            -Robot.mDriveTrain.getRightDistanceRaw(), Constants.ACTUAL_PULSES,
+            Constants.WHEEL_DIAMETER_METERS); // TODO: Right encoder is negative, can fix in subsystem
+        left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
+        right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0); // TODO: Tune these
+        Robot.mDriveTrain.clearGyro();
+        Robot.mDriveTrain.BrakeMode();
     }
 
     Notifier notifier = new Notifier(() -> {

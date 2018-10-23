@@ -62,9 +62,7 @@ public class Robot extends IterativeRobot {
 
         SmartDashboard.putData("CHOOSE ONE", autoSelector);
     }
-    public void robotPeriodic() {
-      gameData = DriverStation.getInstance().getGameSpecificMessage();
-    }
+    public void robotPeriodic() { gameData = DriverStation.getInstance().getGameSpecificMessage(); }
     /**
      * Initialize whatever you need to when the robot becomes disables
      */
@@ -160,4 +158,3 @@ public class Robot extends IterativeRobot {
      */
     public void testPeriodic() {}
 }
-
