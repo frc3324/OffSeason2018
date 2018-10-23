@@ -20,7 +20,6 @@ function usage {
     echo "Usage: $0 DIR..."
     exit 1
 }
-sudo apt install clang-format
 if [ $# -eq 0 ]; then
     usage
 fi
