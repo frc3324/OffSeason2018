@@ -8,13 +8,13 @@ import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.team3324.robot.commands.teleop.ControlArm;
 
-public class IntakeArm extends Subsystem {
+public class Arm extends Subsystem {
     // TODO Invert stuff
-    private WPI_VictorSPX armMotorLeft = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
-    private WPI_VictorSPX armMotorRight = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
+    private WPI_VictorSPX armMotorLeft     = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
+    private WPI_VictorSPX armMotorRight    = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
     private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
 
-    public IntakeArm() {
+    public Arm() {
         // CAUTION: direction already set, don't change it
         if (armMotorLeft.getInverted()) { armMotorLeft.setInverted(true); }
     }

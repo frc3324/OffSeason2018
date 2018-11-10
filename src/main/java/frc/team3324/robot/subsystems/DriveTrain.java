@@ -11,12 +11,10 @@ import edu.wpi.first.wpilibj.SPI;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import com.kauailabs.navx.frc.AHRS;
-import frc.team3324.robot.commands.teleop.DriveTank;
+import frc.team3324.robot.commands.teleop.Drive;
 
 // Identify Drivetrain as a subsystem (class)
 public class DriveTrain extends Subsystem {
-
-    double rotateToAngleRate;
 
     private DoubleSolenoid gearShifter = new DoubleSolenoid(0, 1);
 
@@ -28,17 +26,13 @@ public class DriveTrain extends Subsystem {
 
     private static AHRS gyro = new AHRS(SPI.Port.kMXP);
 
-    PowerDistributionPanel mPDP = new PowerDistributionPanel();
+    WPI_VictorSPX flMotor        = new WPI_VictorSPX(Constants.FL_MOTOR_PORT); // Instantiate the motors as a new TalonSRX motor controller
+    WPI_VictorSPX blMotor        = new WPI_VictorSPX(Constants.BL_MOTOR_PORT);
+    SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor,
+                                                            blMotor); // Combine the left motors into one lMotors speed controller group
 
-    WPI_VictorSPX flMotor =
-        new WPI_VictorSPX(Constants.FL_MOTOR_PORT); // Instantiate the motors as a new TalonSRX motor controller
-    WPI_VictorSPX blMotor = new WPI_VictorSPX(Constants.BL_MOTOR_PORT);
-    SpeedControllerGroup lMotors =
-        new SpeedControllerGroup(flMotor,
-                                 blMotor); // Combine the left motors into one lMotors speed controller group
-
-    WPI_VictorSPX frMotor = new WPI_VictorSPX(Constants.FR_MOTOR_PORT); //repeat for right motors
-    WPI_VictorSPX brMotor = new WPI_VictorSPX(Constants.BR_MOTOR_PORT);
+    WPI_VictorSPX frMotor        = new WPI_VictorSPX(Constants.FR_MOTOR_PORT); //repeat for right motors
+    WPI_VictorSPX brMotor        = new WPI_VictorSPX(Constants.BR_MOTOR_PORT);
     SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 
     public DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);
@@ -49,23 +43,6 @@ public class DriveTrain extends Subsystem {
         rEncoder.setDistancePerPulse(distancePerPulse);
     }
 
-    /**
-     * Set safety status of drivetrain motor controllers
-     * @param status
-     */
-    public void setSafetyEnabled(boolean status) { mDrive.setSafetyEnabled(true); }
-
-    /**
-     * Get current through specified PDP port
-     * @param port
-     * @return
-     */
-    public double getCurrent(int port) { return mPDP.getCurrent(port); }
-
-    /**
-     * Get distance of the left encoder in inches
-     * @return
-     */
     public static double getLeftDistance() { return lEncoder.getDistance(); }
 
     /**
@@ -100,8 +77,6 @@ public class DriveTrain extends Subsystem {
         SmartDashboard.putNumber("R Encoder Distance", getRightDistance());
     }
 
-    public double getPidAngle() { return gyro.pidGet(); }
-
     /**
      * Reset the gyro to zero
      * Avoid usage at all costs
@@ -110,14 +85,14 @@ public class DriveTrain extends Subsystem {
 
     public double getYaw() { return gyro.getYaw(); }
 
-    public void BrakeMode() {
+    public void setBrakeMode() {
         frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
         brMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
         blMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
         flMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
     }
 
-    public void CoastMode() {
+    public void setCoastMode() {
         frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
         brMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
         blMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Coast);
@@ -128,5 +103,5 @@ public class DriveTrain extends Subsystem {
 
     public void setLowGear() { gearShifter.set(DoubleSolenoid.Value.kReverse); }
 
-    protected void initDefaultCommand() { setDefaultCommand(new DriveTank()); }
+    protected void initDefaultCommand() { setDefaultCommand(new Drive()); }
 }

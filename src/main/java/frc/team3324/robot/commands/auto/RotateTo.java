@@ -36,7 +36,7 @@ public class RotateTo extends Command {
             measuredAngle += 360;
         }
         angleToTravel = specifiedAngle - measuredAngle;
-        runningSpeed = angleToTravel * kP;
+        runningSpeed  = angleToTravel * kP;
 
         Robot.mDriveTrain.mDrive.arcadeDrive(0, runningSpeed, false);
 

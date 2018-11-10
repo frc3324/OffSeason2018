@@ -1,10 +1,8 @@
 package frc.team3324.robot;
 
-import frc.team3324.robot.subsystems.CubeController;
-import frc.team3324.robot.commands.auto.DriveForward;
+import frc.team3324.robot.subsystems.Intake;
 import frc.team3324.robot.subsystems.DriveTrain;
-import frc.team3324.robot.subsystems.IntakeArm;
-import frc.team3324.robot.subsystems.TestArm;
+import frc.team3324.robot.subsystems.Arm;
 import frc.team3324.robot.commands.auto.groups.LMiddle;
 import frc.team3324.robot.commands.auto.groups.RMiddle;
 import frc.team3324.robot.commands.auto.groups.RRight;
@@ -29,18 +27,15 @@ public class Robot extends TimedRobot {
      * Instantiate subsystems
      */
     public static final DriveTrain mDriveTrain = new DriveTrain();
-    public static final CubeController mCubeController = new CubeController();
-    public static final IntakeArm mIntakeArm = new IntakeArm();
-    public static final TestArm mTestArm = new TestArm();
-
+    public static final Intake mCubeController = new Intake();
+    public static final Arm mIntakeArm         = new Arm();
     Command selectedCommand;
     SendableChooser<Integer> autoSelector = new SendableChooser<Integer>();
 
     private int defaultSet = 0;
-    private int left = 1;
-    private int middle = 2;
-    private int right = 3;
-    private int positionInt;
+    private int left       = 1;
+    private int middle     = 2;
+    private int right      = 3;
 
     private String gameData;
     private String infoString;
@@ -94,28 +89,28 @@ public class Robot extends TimedRobot {
 
             firstLetter = gameData.charAt(0);
             if (positionString.equals("Default position")) {
-                selectedCommand = new DriveForward(90);
-                infoString = "Drive forward (default)";
+                selectedCommand = new Default();
+                infoString      = "Drive forward (default)";
             } else if (firstLetter == 'L' && positionString.equals("Left position")) {
                 selectedCommand = new LLeft();
-                infoString = "LLeft";
+                infoString      = "LLeft";
             }
             if (firstLetter == 'L' && positionString.equals("Middle position")) {
                 selectedCommand = new LMiddle();
-                infoString = "LMiddle";
+                infoString      = "LMiddle";
             } else if (firstLetter == 'L' && positionString.equals("Right position")) {
                 selectedCommand = new Default();
-                infoString = "LRight";
+                infoString      = "LRight";
             }
             if (firstLetter == 'L' && positionString.equals("Right position")) {
                 selectedCommand = new Default();
-                infoString = "RLeft";
+                infoString      = "RLeft";
             } else if (firstLetter == 'R' && positionString.equals("Middle position")) {
                 selectedCommand = new RMiddle();
-                infoString = "RMiddle";
+                infoString      = "RMiddle";
             } else if (firstLetter == 'R') {
                 selectedCommand = new RRight();
-                infoString = "RRight";
+                infoString      = "RRight";
             } else {
                 DriverStation.reportError("No game data received.", false);
                 infoString = "No game data received.";
