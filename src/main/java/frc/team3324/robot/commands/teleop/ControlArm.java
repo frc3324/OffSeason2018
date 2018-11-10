@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- * Moves the intake arm from forward to backward with the left joystick.
+ * Moves the set arm from forward to backward with the left joystick.
  */
 public class ControlArm extends Command {
 

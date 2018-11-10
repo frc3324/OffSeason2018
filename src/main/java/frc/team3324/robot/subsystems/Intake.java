@@ -7,20 +7,22 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
-public class CubeController extends Subsystem {
-    ;
+public class Intake extends Subsystem {
+
     WPI_VictorSPX leftIntakeMotor;
     WPI_VictorSPX rightIntakeMotor;
     SpeedControllerGroup intakeMotors;
-    public CubeController() {
-        leftIntakeMotor = new WPI_VictorSPX(Constants.LEFT_INTAKE_MOTOR_PORT);
+
+    public Intake() {
+        leftIntakeMotor  = new WPI_VictorSPX(Constants.LEFT_INTAKE_MOTOR_PORT);
         rightIntakeMotor = new WPI_VictorSPX(Constants.RIGHT_INTAKE_MOTOR_PORT);
         leftIntakeMotor.setInverted(true);
         intakeMotors = new SpeedControllerGroup(leftIntakeMotor, rightIntakeMotor);
     }
 
-    // TODO Invert left intake motor
-    public void intake(double speed) { intakeMotors.set(speed); }
+    // TODO Invert left set motor
+    public void set(double speed) { intakeMotors.set(speed); }
 
+    @Override
     public void initDefaultCommand() {}
 }

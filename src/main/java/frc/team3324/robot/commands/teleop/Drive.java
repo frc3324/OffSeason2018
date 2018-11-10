@@ -5,15 +5,13 @@ import frc.team3324.robot.Robot;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.GenericHID;
 
-public class DriveTank extends Command {
+public class Drive extends Command {
 
-    public DriveTank() { requires(Robot.mDriveTrain); }
+    public Drive() { requires(Robot.mDriveTrain); }
 
     protected void execute() {
-        double leftY =
-            OI.primaryController.getY(GenericHID.Hand.kLeft); // Get the Y (Up/Down) value of the LEFT Joystick
-        double rightX =
-            OI.primaryController.getX(GenericHID.Hand.kRight); // Get the X (Left/Right) value of the LEFT Joystick
+        double leftY  = OI.primaryController.getY(GenericHID.Hand.kLeft);  // Get the Y (Up/Down) value of the LEFT Joystick
+        double rightX = OI.primaryController.getX(GenericHID.Hand.kRight); // Get the X (Left/Right) value of the LEFT Joystick
         if (OI.PRIMARY_RIGHT_BUMPER.get()) {
             Robot.mDriveTrain.mDrive.curvatureDrive(leftY, -rightX, true);
         } else if (leftY > 0.1) {
