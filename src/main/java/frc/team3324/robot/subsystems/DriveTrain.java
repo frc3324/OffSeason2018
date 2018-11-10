@@ -11,9 +11,10 @@ import edu.wpi.first.wpilibj.SPI;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import com.kauailabs.navx.frc.AHRS;
+import frc.team3324.robot.commands.teleop.DriveTank;
 
 // Identify Drivetrain as a subsystem (class)
-public class DriveTrain extends Subsystem implements PIDOutput {
+public class DriveTrain extends Subsystem {
 
     double rotateToAngleRate;
 
@@ -79,8 +80,8 @@ public class DriveTrain extends Subsystem implements PIDOutput {
     }
 
     public static int getRightDistanceRaw() {
-        final double rawLDistance = rEncoder.getRaw();
-        return (int)rawLDistance;
+        final int rawLDistance = rEncoder.getRaw();
+        return rawLDistance;
     }
 
     /**
@@ -109,13 +110,6 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
     public double getYaw() { return gyro.getYaw(); }
 
-    @Override
-    /* This function is invoked periodically by the PID Controller, */
-    /* based upon navX-MXP yaw angle input and PID Coefficients.    */
-    public void pidWrite(double output) {
-        rotateToAngleRate = output;
-    }
-
     public void BrakeMode() {
         frMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
         brMotor.setNeutralMode(com.ctre.phoenix.motorcontrol.NeutralMode.Brake);
@@ -134,5 +128,5 @@ public class DriveTrain extends Subsystem implements PIDOutput {
 
     public void setLowGear() { gearShifter.set(DoubleSolenoid.Value.kReverse); }
 
-    protected void initDefaultCommand() {}
+    protected void initDefaultCommand() { setDefaultCommand(new DriveTank()); }
 }

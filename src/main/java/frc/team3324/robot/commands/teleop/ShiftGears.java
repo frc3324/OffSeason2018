@@ -9,12 +9,15 @@ public class ShiftGears extends Command {
 
     boolean gearShifterStatus = false;
 
-    public ShiftGears() {}
+    public ShiftGears() {
+        super("ShiftGears");
+        requires(Robot.mDriveTrain);
+    }
 
     protected void initialize() {}
 
     protected void execute() {
-        if (OI.gamepad0.getAButton()) {
+        if (OI.primaryController.getAButton()) {
             if (gearShifterStatus) {
                 Robot.mDriveTrain.setHighGear();
                 gearShifterStatus = !gearShifterStatus;
@@ -27,7 +30,7 @@ public class ShiftGears extends Command {
 
     protected boolean isFinished() { return false; }
 
-    protected void end() { end(); }
+    protected void end() {}
 
     protected void interrupted() {}
 }

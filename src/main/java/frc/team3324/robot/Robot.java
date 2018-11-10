@@ -2,7 +2,6 @@ package frc.team3324.robot;
 
 import frc.team3324.robot.subsystems.CubeController;
 import frc.team3324.robot.commands.auto.DriveForward;
-import frc.team3324.robot.commands.DriveGroup;
 import frc.team3324.robot.subsystems.DriveTrain;
 import frc.team3324.robot.subsystems.IntakeArm;
 import frc.team3324.robot.subsystems.TestArm;
@@ -16,7 +15,7 @@ import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.DriverStation;
-import edu.wpi.first.wpilibj.IterativeRobot;
+import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -24,7 +23,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * Main robot code<br>
  * <br>
  */
-public class Robot extends IterativeRobot {
+public class Robot extends TimedRobot {
 
     /*
      * Instantiate subsystems
@@ -142,7 +141,7 @@ public class Robot extends IterativeRobot {
     /**
      * Initialize whatever you need to when the robot starts teleop
      */
-    public void teleopInit() { Scheduler.getInstance().add(new DriveGroup()); }
+    public void teleopInit() {}
 
     /**
      * Runs constantly when teleop is enabled

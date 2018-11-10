@@ -10,10 +10,17 @@ public class DriveTank extends Command {
     public DriveTank() { requires(Robot.mDriveTrain); }
 
     protected void execute() {
-        double leftY = OI.gamepad0.getY(GenericHID.Hand.kLeft); // Get the Y (Up/Down) value of the LEFT Joystick
-        double leftX = OI.gamepad0.getX(GenericHID.Hand.kLeft); // Get the X (Left/Right) value of the LEFT Joystick
-        if (OI.gamepad0.getBumper(GenericHID.Hand.kRight)) { leftY *= 0.5; }
-        Robot.mDriveTrain.mDrive.arcadeDrive(leftY, -leftX, true);
+        double leftY =
+            OI.primaryController.getY(GenericHID.Hand.kLeft); // Get the Y (Up/Down) value of the LEFT Joystick
+        double rightX =
+            OI.primaryController.getX(GenericHID.Hand.kRight); // Get the X (Left/Right) value of the LEFT Joystick
+        if (OI.PRIMARY_RIGHT_BUMPER.get()) {
+            Robot.mDriveTrain.mDrive.curvatureDrive(leftY, -rightX, true);
+        } else if (leftY > 0.1) {
+            Robot.mDriveTrain.mDrive.curvatureDrive(leftY, -rightX, true);
+        } else {
+            Robot.mDriveTrain.mDrive.curvatureDrive(leftY, -rightX, false);
+        }
     }
 
     @Override

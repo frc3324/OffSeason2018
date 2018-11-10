@@ -1,6 +1,6 @@
 Language:        Java
 ColumnLimit: 120
-PenaltyBreakComment: 120
+PenaltyBreakComment: 140
 ReflowComments: false
 AlignConsecutiveAssignments: false
 AlignTrailingComments: true
