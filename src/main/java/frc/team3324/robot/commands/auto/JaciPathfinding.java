@@ -40,12 +40,10 @@ public class JaciPathfinding extends Command {
             new Waypoint(3.048, 0, 0),
         };
         Waypoint[] LMiddlepoints = new Waypoint[] {
-            new Waypoint(0, 0, 0),
-            new Waypoint(3.556, 1.2192, 0),
+            new Waypoint(0, 0, 0), new Waypoint(3.556, 1.2192, 0),
         };
         Waypoint[] RMiddlepoints = new Waypoint[] {
-            new Waypoint(0, 0, 0),
-            new Waypoint(3.556, -1.9812, 0),
+            new Waypoint(0, 0, 0), new Waypoint(3.556, -1.9812, 0),
         };
         Waypoint[] LLLeftpoints = new Waypoint[] {
             new Waypoint(0, 0,
@@ -53,8 +51,7 @@ public class JaciPathfinding extends Command {
             new Waypoint(4.2672, 0.4064, Pathfinder.d2r(90)),
         };
         Waypoint[] RRRightpoints = new Waypoint[] {
-            new Waypoint(0, 0, 0),
-            new Waypoint(4.2672, -1.8288, 90),
+            new Waypoint(0, 0, 0), new Waypoint(4.2672, -1.8288, 90),
         };
         Trajectory.Config config =
             new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.01,

@@ -25,11 +25,11 @@ public class ArmPID extends Command {
 
         testArmEncoder = Robot.mTestArm.getEncoder();
 
-        joystickVal = OI.gamepad1.getY(GenericHID.Hand.kRight);
+        joystickVal = OI.secondaryController.getY(GenericHID.Hand.kRight);
 
-        buttonB = OI.gamepad1.getBButton();
-        buttonA = OI.gamepad1.getAButton();
-        buttonX = OI.gamepad1.getXButton();
+        buttonB = OI.secondaryController.getBButton();
+        buttonA = OI.secondaryController.getAButton();
+        buttonX = OI.secondaryController.getXButton();
 
         if (Math.abs(joystickVal) > 0.1) {
             Robot.mTestArm.moveTestArm(joystickVal);

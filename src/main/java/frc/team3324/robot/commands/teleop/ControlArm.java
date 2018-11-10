@@ -3,7 +3,6 @@ package frc.team3324.robot.commands.teleop;
 import frc.team3324.robot.OI;
 import frc.team3324.robot.Robot;
 
-import edu.wpi.first.wpilibj.DriverStation;
 import edu.wpi.first.wpilibj.GenericHID;
 import edu.wpi.first.wpilibj.command.Command;
 
@@ -27,7 +26,7 @@ public class ControlArm extends Command {
      * Voltage to motor speed
      */
     protected void execute() {
-        double leftY = OI.gamepad1.getY(GenericHID.Hand.kLeft);
+        double leftY = OI.secondaryController.getY(GenericHID.Hand.kLeft);
 
         Robot.mIntakeArm.armMovement(leftY);
     }

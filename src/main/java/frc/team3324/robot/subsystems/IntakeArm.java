@@ -6,6 +6,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.team3324.robot.commands.teleop.ControlArm;
 
 public class IntakeArm extends Subsystem {
     // TODO Invert stuff
@@ -24,5 +25,5 @@ public class IntakeArm extends Subsystem {
 	 */
     public void armMovement(double speed) { armMotors.set(speed); }
 
-    public void initDefaultCommand() {}
+    public void initDefaultCommand() { setDefaultCommand(new ControlArm()); }
 }
