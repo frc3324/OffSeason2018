@@ -10,7 +10,7 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.team3324.robot.Constants;
 
-abstract public class MetroSubsystem extends Subsystem {
+abstract public class MetroSubsystemVictor extends Subsystem {
 
     public static Encoder[] encoders = new Encoder[4];
     private static final EncodingType ENCODING_TYPE = Encoder.EncodingType.k4X;
@@ -21,11 +21,11 @@ abstract public class MetroSubsystem extends Subsystem {
     public WPI_VictorSPX frontRightMotor, backRightMotor, backLeftMotor, frontLeftMotor;
     public DifferentialDrive mDrive;
 
-    public MetroSubsystem() {}
+    public MetroSubsystemVictor() {}
     /*
      *     For use if 2 encoders are needed
      *         */
-    public MetroSubsystem(int leftEncoderPortA, int leftEncoderPortB, int rightEncoderPortA, int rightEncoderPortB,
+    public MetroSubsystemVictor(int leftEncoderPortA, int leftEncoderPortB, int rightEncoderPortA, int rightEncoderPortB,
                           int frontLeftMotorPort, int backLeftMotorPort, int frontRightMotorPort,
                           int backRightMotorPort) {
 
