@@ -53,16 +53,21 @@ public class JaciPathfinding extends Command {
         };
         Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.01,
                                                          Constants.LOW_GEAR_METERS_PER_SECOND * 0.7, 4.5, 9);
-        if (path.equals("LLLeft")) {
-            trajectory = Pathfinder.generate(LLLeftpoints, config);
-        } else if (path.equals("RRRight")) {
-            trajectory = Pathfinder.generate(RRRightpoints, config);
-        } else if (path.equals("RMiddle")) {
-            trajectory = Pathfinder.generate(RMiddlepoints, config);
-        } else if (path.equals("LMiddle")) {
-            trajectory = Pathfinder.generate(LMiddlepoints, config);
-        } else {
-            trajectory = Pathfinder.generate(Defaultpoints, config);
+        switch (path) {
+            case "LLLeft":
+                trajectory = Pathfinder.generate(LLLeftpoints, config);
+                break;
+            case "RRRight":
+                trajectory = Pathfinder.generate(RRRightpoints, config);
+                break;
+            case "RMiddle":
+                trajectory = Pathfinder.generate(RMiddlepoints, config);
+                break;
+            case "LMiddle":
+                trajectory = Pathfinder.generate(LMiddlepoints, config);
+                break;
+            default:
+                trajectory = Pathfinder.generate(Defaultpoints, config);
         }
         TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
         left                  = new EncoderFollower(modifier.getLeftTrajectory());
@@ -88,6 +93,7 @@ public class JaciPathfinding extends Command {
         SmartDashboard.putBoolean("JaciFinished", false);
         Robot.mDriveTrain.mDrive.tankDrive(-(lOutput + turn), -(rOutput - turn), false);
     });
+
 
     // Called just before this Command runs the first time
     protected void initialize() { notifier.startPeriodic(0.01); }
