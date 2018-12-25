@@ -19,20 +19,20 @@ public class DriveTrain extends Subsystem {
     private DoubleSolenoid gearShifter = new DoubleSolenoid(0, 1);
 
     private static Encoder lEncoder =
-        new Encoder(Constants.LEFT_ENCODER_PORT_A, Constants.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
+        new Encoder(Constants.DriveTrain.LEFT_ENCODER_PORT_A, Constants.DriveTrain.LEFT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
     private static Encoder rEncoder =
-        new Encoder(Constants.RIGHT_ENCODER_PORT_A, Constants.RIGHT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
-    private double distancePerPulse = Constants.CIRCUMFERENCE / Constants.ACTUAL_PULSES;
+        new Encoder(Constants.DriveTrain.RIGHT_ENCODER_PORT_A, Constants.DriveTrain.RIGHT_ENCODER_PORT_B, false, Encoder.EncodingType.k4X);
+    private double distancePerPulse = Constants.DriveTrain.CIRCUMFERENCE / Constants.DriveTrain.ACTUAL_PULSES;
 
     private static AHRS gyro = new AHRS(SPI.Port.kMXP);
 
-    WPI_VictorSPX flMotor        = new WPI_VictorSPX(Constants.FL_MOTOR_PORT); // Instantiate the motors as a new TalonSRX motor controller
-    WPI_VictorSPX blMotor        = new WPI_VictorSPX(Constants.BL_MOTOR_PORT);
+    WPI_VictorSPX flMotor        = new WPI_VictorSPX(Constants.DriveTrain.FL_MOTOR_PORT); // Instantiate the motors as a new TalonSRX motor controller
+    WPI_VictorSPX blMotor        = new WPI_VictorSPX(Constants.DriveTrain.BL_MOTOR_PORT);
     SpeedControllerGroup lMotors = new SpeedControllerGroup(flMotor,
                                                             blMotor); // Combine the left motors into one lMotors speed controller group
 
-    WPI_VictorSPX frMotor        = new WPI_VictorSPX(Constants.FR_MOTOR_PORT); //repeat for right motors
-    WPI_VictorSPX brMotor        = new WPI_VictorSPX(Constants.BR_MOTOR_PORT);
+    WPI_VictorSPX frMotor        = new WPI_VictorSPX(Constants.DriveTrain.FR_MOTOR_PORT); //repeat for right motors
+    WPI_VictorSPX brMotor        = new WPI_VictorSPX(Constants.DriveTrain.BR_MOTOR_PORT);
     SpeedControllerGroup rMotors = new SpeedControllerGroup(frMotor, brMotor);
 
     public DifferentialDrive mDrive = new DifferentialDrive(lMotors, rMotors);

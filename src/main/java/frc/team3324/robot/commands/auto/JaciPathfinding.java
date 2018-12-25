@@ -52,31 +52,31 @@ public class JaciPathfinding extends Command {
             new Waypoint(4.2672, -1.8288, 90),
         };
         Trajectory.Config config = new Trajectory.Config(Trajectory.FitMethod.HERMITE_CUBIC, Trajectory.Config.SAMPLES_LOW, 0.01,
-                                                         Constants.LOW_GEAR_METERS_PER_SECOND * 0.7, 4.5, 9);
+                                                         Constants.DriveTrain.LOW_GEAR_METERS_PER_SECOND * 0.7, 4.5, 9);
         switch (path) {
-            case "LLLeft":
-                trajectory = Pathfinder.generate(LLLeftpoints, config);
-                break;
-            case "RRRight":
-                trajectory = Pathfinder.generate(RRRightpoints, config);
-                break;
-            case "RMiddle":
-                trajectory = Pathfinder.generate(RMiddlepoints, config);
-                break;
-            case "LMiddle":
-                trajectory = Pathfinder.generate(LMiddlepoints, config);
-                break;
-            default:
-                trajectory = Pathfinder.generate(Defaultpoints, config);
+        case "LLLeft":
+            trajectory = Pathfinder.generate(LLLeftpoints, config);
+            break;
+        case "RRRight":
+            trajectory = Pathfinder.generate(RRRightpoints, config);
+            break;
+        case "RMiddle":
+            trajectory = Pathfinder.generate(RMiddlepoints, config);
+            break;
+        case "LMiddle":
+            trajectory = Pathfinder.generate(LMiddlepoints, config);
+            break;
+        default:
+            trajectory = Pathfinder.generate(Defaultpoints, config);
         }
-        TankModifier modifier = new TankModifier(trajectory).modify(Constants.DISTANCE_BETWEEN_WHEELS_METERS);
+        TankModifier modifier = new TankModifier(trajectory).modify(Constants.DriveTrain.DISTANCE_BETWEEN_WHEELS_METERS);
         left                  = new EncoderFollower(modifier.getLeftTrajectory());
         right                 = new EncoderFollower(modifier.getRightTrajectory());
-        left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.ACTUAL_PULSES, Constants.WHEEL_DIAMETER_METERS);
-        right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.ACTUAL_PULSES,
-                               Constants.WHEEL_DIAMETER_METERS); // TODO: Right encoder is negative, can fix in subsystem
-        left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0);
-        right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.LOW_GEAR_METERS_PER_SECOND, 0); // TODO: Tune these
+        left.configureEncoder(Robot.mDriveTrain.getLeftDistanceRaw(), Constants.DriveTrain.ACTUAL_PULSES, Constants.DriveTrain.WHEEL_DIAMETER_METERS);
+        right.configureEncoder(-Robot.mDriveTrain.getRightDistanceRaw(), Constants.DriveTrain.ACTUAL_PULSES,
+                               Constants.DriveTrain.WHEEL_DIAMETER_METERS); // TODO: Right encoder is negative, can fix in subsystem
+        left.configurePIDVA(0.3, 0.0, 0, 1 / Constants.DriveTrain.LOW_GEAR_METERS_PER_SECOND, 0);
+        right.configurePIDVA(0.3, 0.0, 0, 1 / Constants.DriveTrain.LOW_GEAR_METERS_PER_SECOND, 0); // TODO: Tune these
         Robot.mDriveTrain.clearGyro();
         Robot.mDriveTrain.setBrakeMode();
     }
@@ -93,7 +93,6 @@ public class JaciPathfinding extends Command {
         SmartDashboard.putBoolean("JaciFinished", false);
         Robot.mDriveTrain.mDrive.tankDrive(-(lOutput + turn), -(rOutput - turn), false);
     });
-
 
     // Called just before this Command runs the first time
     protected void initialize() { notifier.startPeriodic(0.01); }

@@ -10,8 +10,8 @@ import frc.team3324.robot.commands.teleop.ControlArm;
 
 public class Arm extends Subsystem {
     // TODO Invert stuff
-    private WPI_VictorSPX armMotorLeft     = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_LEFT);
-    private WPI_VictorSPX armMotorRight    = new WPI_VictorSPX(Constants.MOTOR_PORT_ARM_RIGHT);
+    private WPI_VictorSPX armMotorLeft     = new WPI_VictorSPX(Constants.Arm.MOTOR_PORT_ARM_LEFT);
+    private WPI_VictorSPX armMotorRight    = new WPI_VictorSPX(Constants.Arm.MOTOR_PORT_ARM_RIGHT);
     private SpeedControllerGroup armMotors = new SpeedControllerGroup(armMotorLeft, armMotorRight);
 
     public Arm() {

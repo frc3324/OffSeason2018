@@ -14,8 +14,8 @@ public class Intake extends Subsystem {
     SpeedControllerGroup intakeMotors;
 
     public Intake() {
-        leftIntakeMotor  = new WPI_VictorSPX(Constants.LEFT_INTAKE_MOTOR_PORT);
-        rightIntakeMotor = new WPI_VictorSPX(Constants.RIGHT_INTAKE_MOTOR_PORT);
+        leftIntakeMotor  = new WPI_VictorSPX(Constants.Intake.LEFT_INTAKE_MOTOR_PORT);
+        rightIntakeMotor = new WPI_VictorSPX(Constants.Intake.RIGHT_INTAKE_MOTOR_PORT);
         leftIntakeMotor.setInverted(true);
         intakeMotors = new SpeedControllerGroup(leftIntakeMotor, rightIntakeMotor);
     }

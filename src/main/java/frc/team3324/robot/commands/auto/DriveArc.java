@@ -33,9 +33,9 @@ public class DriveArc extends Command {
         DriveTrain.clearEncoder();
 
         innerSpeed =
-            ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) - 1) / ((circleRadius * (2 / Constants.DISTANCE_BETWEEN_WHEELS)) + 1);
-        innerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius - (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
-        outerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius + (Constants.DISTANCE_BETWEEN_WHEELS / 2)));
+            ((circleRadius * (2 / Constants.DriveTrain.DISTANCE_BETWEEN_WHEELS)) - 1) / ((circleRadius * (2 / Constants.DriveTrain.DISTANCE_BETWEEN_WHEELS)) + 1);
+        innerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius - (Constants.DriveTrain.DISTANCE_BETWEEN_WHEELS / 2)));
+        outerDistance = (circleAngle / 360) * (2 * Math.PI) * ((circleRadius + (Constants.DriveTrain.DISTANCE_BETWEEN_WHEELS / 2)));
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -78,7 +78,7 @@ public class DriveArc extends Command {
     		 * the command will be keep running until complete.
     		 */
 
-            encoderDifference = (rightDistance * (Constants.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
+            encoderDifference = (rightDistance * (Constants.DriveTrain.ENCODER_CONVERSION_RATE)) - DriveTrain.getRightDistance();
 
             if (Math.abs(encoderDifference) < 0.5) {
                 isFinished = true;
@@ -97,7 +97,7 @@ public class DriveArc extends Command {
     		 */
             leftDistance      = outerDistance;
             rightDistance     = innerDistance;
-            encoderDifference = (leftDistance * (Constants.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
+            encoderDifference = (leftDistance * (Constants.DriveTrain.ENCODER_CONVERSION_RATE) - DriveTrain.getLeftDistance());
 
             if (Math.abs(encoderDifference) < 0.1 || encoderDifference < 0) {
                 isFinished = true;
